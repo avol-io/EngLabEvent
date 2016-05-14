@@ -1,0 +1,12 @@
+/*
+Vari regole per il linter jscs
+*/
+{
+  "requireLineFeedAtFileEnd": false,
+  "validateQuoteMarks": "'",
+  "requireSpacesInsideParentheses": false,
+  "requireSpacesInsideBrackets": false,
+  "requirePaddingNewLinesBeforeLineComments": false,
+  "requireCapitalizedComments": false,
+  "maximumLineLength": 200
+}
