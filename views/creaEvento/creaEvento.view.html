@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<div class="creaEvento" ng-controller="creaEvento as ctrl">
+  <h1>Creazione Evento</h1>
+  <h2>Da questa pagina è possibile  creare un nuovo evento</h2>
+  <form novalidate name="creaEventoForm">
+    <fieldset class="informazioniGenerali">
+      <legend>Informazioni Principali Evento</legend>
+      <label>Nome Evento:
+        <input type="text" ng-model="ctrl.evento.nome" required="true" name="Nome Evento" placeholder="Nome evento"></input>
+      </label>
+      <label>Data Evento:
+        <input type="date" ng-model="ctrl.evento.data" required="true" name="Data Evento" placeholder="Data evento"></input>
+      </label>
+      <label>Luogo Evento:
+        <input type="text" ng-model="ctrl.evento.luogo" name="Luogo Evento" placeholder="Luogo evento"></input>
+      </label>
+
+    </fieldset>
+
+
+    <fieldset class="opzioni" ng-if="ctrl.visualizzaOpzioni">
+      <legend>Gestione Opzioni</legend>
+      <ul ng-if="ctrl.evento.opzioni.length>0" >
+        <li ng-repeat="opzione in ctrl.evento.opzioni track by opzione.nome">
+            <label>
+          <input type="text" ng-model="opzione.nome" name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
+          <button ng-click="ctrl.rimuoviOpzione(opzione)">x</button>
+        </label>
+        </li>
+      </ul>
+      <div class="operazioni">
+      <button ng-click="ctrl.aggiungiOpzione()">Aggiungi Opzione</button>
+
+    </div>
+
+    </fieldset>
+
+    <fieldset class="opzioni" ng-if="ctrl.visualizzaOpzioni">
+      <legend>Vincoli sui partecipanti</legend>
+      <label>Vincoli su numero partecipanti:
+        <input type="checkbox" ng-model="ctrl.visualizzaVincoli" name="Vincoli su partecipanti" ng-change="ctrl.alCambiamentoDelVincoloSuIPartecipanti()"></input>
+      </label>
+      <label ng-if="ctrl.visualizzaVincoli">Minimo numero partecipanti
+        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.min" name="Minimo numero partecipanti" ></input>
+      </label>
+      <label ng-if="ctrl.visualizzaVincoli">Massimo numero partecipanti:
+        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.max" name="Minimo numero partecipanti" ></input>
+      </label>
+
+    </fieldset>
+
+    <div class="operazioni">
+        <button ng-click="ctrl.cambiaVisualizzazioneOpzioni()" ng-if="ctrl.visualizzaOpzioni&&ctrl.evento.opzioni.length===0">Nascondi Opzioni</button>
+      <button ng-click="ctrl.cambiaVisualizzazioneOpzioni()" ng-if="!ctrl.visualizzaOpzioni">Visualizza Opzioni</button>
+      <button ng-click="ctrl.salva()" ng-if="creaEventoForm.$valid">Salva Evento</button>
+    </div>
+    <div class="areaInformazioni">
+       <div ng-show="creaEventoForm.$dirty">Form modificata</div>
+    <div ng-show="creaEventoForm.$pristine">Form non modificata</div>
+    <ul>
+      <!-- stackoverflow è il tuo migliore amico -->
+      <li ng-repeat="(key, errors) in creaEventoForm.$error track by $index"> <strong>{{ key }}</strong> errori
+        <ul>
+          <li ng-repeat="e in errors">{{ e.$name }} ha un errore: <strong>{{ key }}</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+
+</div>
+</form>
+
+</div>

@@ -1,0 +1,35 @@
+
+/*
+Crea Evento
+ */
+
+body.creaEvento.rendimiBello  {
+  padding-top: 100px;
+  background-position-y: -30px;
+  background-size: 550px;
+}
+
+.rendimiBello.creaEvento .menu {
+  order: 2;
+}
+.rendimiBello.creaEvento .contenutoPrincipale {
+  order: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  animation: 1.75s opacita;
+}
+
+
+.rendimiBello .creaEvento .opzioni li {}
+.rendimiBello .creaEvento .opzioni label {
+  flex-flow: row nowrap;
+  display: flex;
+}
+.rendimiBello .creaEvento .opzioni label input {
+  flex-grow: 2;
+}
+.rendimiBello .creaEvento .opzioni label button {
+  flex-shrink: 1;
+  flex-grow: 1;
+  height: 2.6rem;
+}

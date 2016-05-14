@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="engLabEvents">
+
+<head>
+  <title>Eng Lab Events</title>
+  <script src="extra/angular.min.js" charset="utf-8"></script>
+  <!-- base -->
+  <script src="engLabEvents.app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+
+  <!-- creaEvento-->
+  <script src="views/creaEvento/creaEvento.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/creaEvento/creaEvento.css" media="screen" title="no title" charset="utf-8">
+
+  <!-- visualizzaEventi-->
+  <script src="views/visualizzaEventi/visualizzaEventi.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/visualizzaEventi/visualizzaEventi.css" media="screen" title="no title" charset="utf-8">
+
+  <!-- visualizzaEventi-->
+  <script src="views/registrazioneNuovoUtente/registrazioneNuovoUtente.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/registrazioneNuovoUtente/registrazioneNuovoUtente.css" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body class="rendimiBello" ng-controller="controllerApp as ctrlApp" ng-class="ctrlApp.paginaCorrente">
+
+
+
+  <div class="menu">
+    <ul ng-if="!ctrlApp.paginaCorrente">
+      <li>
+        <button ng-click="ctrlApp.cambiaPagina('creaEvento')">Crea Evento</button>
+      </li>
+      <li>
+        <button ng-click="ctrlApp.cambiaPagina('visualizzaEventi')">Visualizza Eventi</button>
+      </li>
+      <li>
+        <button ng-click="ctrlApp.cambiaPagina('registrazioneNuovoUtente')">Registrati</button>
+      </li>
+    </ul>
+    <div ng-if="ctrlApp.paginaCorrente">
+      <button ng-click="ctrlApp.cambiaPagina(null)">Indietro</button>
+    </div>
+  </div>
+  <div class="contenutoPrincipale" ng-include="ctrlApp.templatePage">
+    questo testo verrà sostituito da ng-include
+  </div>
+
+</body>
+
+</html>
