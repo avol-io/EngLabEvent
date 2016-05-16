@@ -12,8 +12,9 @@ Vi ricordo che avete 2weekend dopo ogni lab per poter effettuare gli esercizi.
 3. Quello che pensate possa essere utile
 
 ##Tools
-Vi consiglio di usare atom come editor con i seguenti plugins:
+Vi consiglio di usare Atom come editor con i seguenti plugins:
 
+```
 - atom-beautify
 - file-icons
 - linter
@@ -23,5 +24,14 @@ Vi consiglio di usare atom come editor con i seguenti plugins:
 - linter-jshint
 - linter-sass-lint
 - pigments
+```
 
+Invece se non avete un server http a disposizione potete usare http-server di node. I passi da seguire sono:
+
+```
+1. Installare node (https://nodejs.org/en/)
+2. Installare http-server con il comando da terminale npm install -g http-server
+3. Aprire nel terminale la cartella contenente gli esercizi ed eseguire il comando http-server
+4. Aprire il browser su http://localhost:8080
+```
 
