@@ -1,0 +1,55 @@
+
+/*
+Visualizza evento
+ */
+
+body.visualizzaEventi.rendimiBello  {
+  padding-top: 100px;
+  background-position-y: -30px;
+  background-size: 550px;
+}
+
+.rendimiBello.visualizzaEventi .menu {
+  order: 2;
+}
+.rendimiBello.visualizzaEventi .contenutoPrincipale {
+  order: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  animation: 1.75s opacita;
+}
+
+.rendimiBello.visualizzaEventi .elencoEventi table {
+  width: 100%;
+}
+
+.rendimiBello.visualizzaEventi .elencoEventi table .evento{
+  vertical-align: middle;
+  text-align: center;
+  height: 3rem;
+}
+
+.rendimiBello.visualizzaEventi .elencoEventi table .w15{
+  width: 15%;
+}
+
+.rendimiBello.visualizzaEventi .elencoEventi table .w5{
+  width: 5%;
+}
+
+.rendimiBello.visualizzaEventi .elencoEventi label {
+  flex-flow: row nowrap;
+  display: flex;
+}
+.rendimiBello.visualizzaEventi .elencoEventi input {
+  flex-grow: 1;
+  height: 1.2rem;
+  width: 80%;
+  display:inline;
+  margin: 0px 0px 0.3rem;
+}
+.rendimiBello.visualizzaEventi .elencoEventi button {
+  flex-shrink: 1;
+  flex-grow: 1;
+  height: 1.6rem;
+}

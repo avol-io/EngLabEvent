@@ -23,7 +23,7 @@
       <ul ng-if="ctrl.evento.opzioni.length>0" >
         <li ng-repeat="opzione in ctrl.evento.opzioni track by opzione.nome">
             <label>
-          <input type="text" ng-model="opzione.nome" name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
+          <input type="text" ng-model="opzione.nome" required="true" name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
           <button ng-click="ctrl.rimuoviOpzione(opzione)">x</button>
         </label>
         </li>
