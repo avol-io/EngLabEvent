@@ -35,19 +35,10 @@ vincoliPartecipanti:{
     /*
       ATTRIBUTI
      */
-  
+
 
     //l'evento che si vuole creare
-    ctrl.evento = {
-      nome: null, //stringa
-      data: new Date(), //data
-      luogo: null, //stringa
-      opzioni: [], //array di "Opzioni" {nome:stringa}
-      vincoliPartecipanti: {
-        min: null, //intero
-        max: null, //intero
-      }
-    };
+    ctrl.evento = creaEventoVuoto();
 
     /*
     Variabili di flusso
@@ -89,12 +80,27 @@ vincoliPartecipanti:{
       ctrl.pulisci();
     }
 
+    function creaEventoVuoto() {
+      return {
+        nome: null, //stringa
+        data: new Date(), //data
+        luogo: null, //stringa
+        opzioni: [], //array di "Opzioni" {nome:stringa}
+        edit: false,
+        vincoliPartecipanti: {
+          min: null, //intero
+          max: null, //intero
+        }
+      };
+    }
+
     /**
      * Si occupa di pulire il form resettando tutti i campi
      * @return void
      */
     function pulisci() {
-      ctrl.evento = {};
+      ctrl.evento = creaEventoVuoto();
+      ctrl.visualizzaVincoli = false;
     }
 
     /**
