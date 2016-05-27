@@ -1,31 +1,40 @@
-(function() {
+(function () {
   'use strict';
 
   //creo il modulo principale/app
   var engLabEvents = angular.module('engLabEvents', []);
 
   //definisco il controller che associo a tutta l'app e che governerà gli aspetti generali.
-  engLabEvents.controller('controllerApp', function() {
+  engLabEvents.controller('controllerApp', function () {
     var ctrlApp = this;
 
     /*
       Attributi
      */
+    ctrlApp.currentPage = null;
     ctrlApp.templatePage = null;
-    ctrlApp.paginaCorrente = null;
+
+    /*
+     Attributi di flusso
+    */
+    ctrlApp.isMainPage = true;
 
     /*
     Funzioni
      */
-    ctrlApp.cambiaPagina = cambiaPagina;
+    ctrlApp.changePage = changePage;
 
-    function cambiaPagina(nomePagina) {
-      if (nomePagina) {
-        ctrlApp.paginaCorrente = nomePagina;
-        ctrlApp.templatePage = 'views/' + nomePagina + '/' + nomePagina + '.view.html';
-      } else {
+
+    function changePage(pageName) {
+      if (pageName != null) {
+        ctrlApp.currentPage = pageName;
+        ctrlApp.templatePage = 'views/' + pageName + '/' + pageName + '.view.html';
+        ctrlApp.isMainPage = false;
+      }
+      else {
+        ctrlApp.currentPage = null;
         ctrlApp.templatePage = null;
-        ctrlApp.paginaCorrente = null;
+        ctrlApp.isMainPage = true;
       }
     }
 

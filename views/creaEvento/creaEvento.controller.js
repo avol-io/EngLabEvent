@@ -35,10 +35,19 @@ vincoliPartecipanti:{
     /*
       ATTRIBUTI
      */
-
+  
 
     //l'evento che si vuole creare
-    ctrl.evento = creaEventoVuoto();
+    ctrl.evento = {
+      nome: null, //stringa
+      data: new Date(), //data
+      luogo: null, //stringa
+      opzioni: [], //array di "Opzioni" {nome:stringa}
+      vincoliPartecipanti: {
+        min: null, //intero
+        max: null, //intero
+      }
+    };
 
     /*
     Variabili di flusso
@@ -46,7 +55,7 @@ vincoliPartecipanti:{
     //visualizza opzioni
     ctrl.visualizzaOpzioni = false;
     //visualizza vincoli su i partecipanti
-  ctrl.visualizzaVincoli = false;
+    ctrl.visualizzaVincoli = false;
 
 
     /*
@@ -80,27 +89,12 @@ vincoliPartecipanti:{
       ctrl.pulisci();
     }
 
-    function creaEventoVuoto() {
-      return {
-        nome: null, //stringa
-        data: new Date(), //data
-        luogo: null, //stringa
-        opzioni: [], //array di "Opzioni" {nome:stringa}
-        edit: false,
-        vincoliPartecipanti: {
-          min: null, //intero
-          max: null, //intero
-        }
-      };
-    }
-
     /**
      * Si occupa di pulire il form resettando tutti i campi
      * @return void
      */
     function pulisci() {
-      ctrl.evento = creaEventoVuoto();
-      ctrl.visualizzaVincoli = false;
+      ctrl.evento = {};
     }
 
     /**
@@ -122,6 +116,7 @@ vincoliPartecipanti:{
         }
       }
     }
+
 
     /*
     Cambia visualizzazione

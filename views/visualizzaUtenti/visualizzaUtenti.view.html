@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<div class="visualizzaUtenti" ng-controller="visualizzaUtenti as ctrl">
+  <h1>Visualizzazione Utenti</h1>
+  <table>
+  <tr ng-repeat="utente in ctrl.utenti track by utente.cognome">
+    <td>{{utente.nome}}</td>
+    <td>{{utente.cognome}}</td>
+    <td>{{utente.email}}</td>
+    <td><button ng-click="ctrl.rimuoviUtente(utente)">elimina</button></td>
+  </tr>
+  </table>  
+  
+  <span ng-if="ctrl.utenti.length > 0">Numero utenti: {{ctrl.utenti.length}}</span>
+     
+  
+</div>

@@ -1,0 +1,35 @@
+
+/*
+Crea Utente
+ */
+
+body.creaUtente.rendimiBello  {
+  padding-top: 100px;
+  background-position-y: -30px;
+  background-size: 550px;
+}
+
+.rendimiBello.creaUtente .menu {
+  order: 2;
+}
+.rendimiBello.creaUtente .contenutoPrincipale {
+  order: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  animation: 1.75s opacita;
+}
+
+
+.rendimiBello .creaUtente .opzioni li {}
+.rendimiBello .creaUtente .opzioni label {
+  flex-flow: row nowrap;
+  display: flex;
+}
+.rendimiBello .creaUtente .opzioni label input {
+  flex-grow: 2;
+}
+.rendimiBello .creaUtente .opzioni label button {
+  flex-shrink: 1;
+  flex-grow: 1;
+  height: 2.6rem;
+}
