@@ -123,6 +123,7 @@ contenutoPrincipale
 }
 .rendimiBello form input {
   webkit-appearance: none;
+  -moz-appearance: none;
   display: block;
   width: 100%;
   height: 2rem;

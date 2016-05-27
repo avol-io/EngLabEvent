@@ -1,6 +1,28 @@
 <!DOCTYPE html>
-<div class="registrazioneNuovoUtente" ng-controller="registrazioneNuovoUtente as ctrl">
+<div class="creaUtente" ng-controller="registrazioneNuovoUtente as ctrl">
   <h1>Registrazione Nuovo Utente</h1>
   <h2>..</h2>
 
-</div>
+  <form novalidate name="creaUtenteForm">
+    <fieldset class="informazioniGenerali">
+      <legend>Informazioni Principali Utente</legend>
+      <label>Nome:
+        <input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome Utente" placeholder="Nome utente"></input>
+      </label>
+      <label>Cognome:
+        <input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome Utente" placeholder="Cognome utente"></input>
+      </label>
+      <label>Email:
+        <input type="email" ng-model="ctrl.utente.email" name="Email Aziendale" ng-if="ctrl.utente.esterno" placeholder="Email utente esterno"></input>
+        <input type="email" ng-model="ctrl.utente.email" name="Email Aziendale" pattern=".+@eng\.it$" ng-if="!ctrl.utente.esterno" placeholder="Email utente @eng.it"></input>
+      </label>
+      <label>Esterno:
+        <input type="checkbox" ng-model="ctrl.utente.esterno" name="Esterno" placeholder="esterno"></input>
+      </label>
+
+    </fieldset>
+    <div class="operazioni">
+      <button ng-click="ctrl.salva()" ng-if="creaUtenteForm.$valid">Salva Utente</button>
+    </div>
+    </form>
+    </div>
