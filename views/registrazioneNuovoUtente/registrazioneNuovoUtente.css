@@ -1,0 +1,16 @@
+#email.ng-valid{
+  border-color: green;
+}
+#email.ng-invalid{
+  border-color: red;
+}
+#registraButton {
+  border: 1px solid;
+  background: #17A698;
+  color: white;
+  font-size: 1.5rem;
+  width: 10%;
+}
+#registraButton:hover{
+  background-color: red;
+}

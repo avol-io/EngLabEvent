@@ -3,4 +3,29 @@
   <h1>Registrazione Nuovo Utente</h1>
   <h2>..</h2>
 
+  <form novalidate name="registraUtente">
+    <fieldset class="informazioniGenerali">
+      <legend>Informazioni Principali Utente</legend>
+      <label>Nome :
+        <input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome Utente" placeholder="Nome utente"></input>
+      </label>
+      <label>Cognome :
+        <input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome Utente" placeholder="Cognome utente"></input>
+      </label>
+      <label>E-Mail :
+        <input type="email" id="email" ng-model="ctrl.utente.email" required="true" name="E-Mail"
+                placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/" ></input>
+      </label>
+      <label>Esterno :
+        <input type="checkbox" ng-model="ctrl.utente.esterno" name="Esterno" placeholder="Esterno"></input>
+      </label>
+
+    </fieldset>
+
+    <div class="operazioni">
+        <button id="registraButton" ng-if="registraUtente.$valid" ng-click="ctrl.registraUtente()">Registrati</button>
+    </div>
+
+  </form>
+
 </div>

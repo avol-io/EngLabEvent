@@ -1,6 +1,76 @@
 <!DOCTYPE html>
 <div class="visualizzazioneEventi" ng-controller="visualizzaEventi as ctrl">
-  <h1>Visualizzazione Eventi</h1>
-  <h2>..</h2>
-  Numero eventi: {{ctrl.eventi.length}}
+    <h1>Visualizzazione Eventi</h1>
+    <div>Numero eventi: {{ctrl.eventi.length || 0}}</div>
+
+    <table class="eventiTable" ng-if="ctrl.eventi">
+        <tr>
+            <th>Evento</th>
+            <th>Data</th>
+            <th>Luogo</th>
+            <th>Opzioni</th>
+            <th>Partecipanti</th>
+            <th>Modifica evento</th>
+            <th>Cancella evento</th>
+        </tr>
+        <tr ng-repeat="evento in ctrl.eventi">
+            <form name="modificaForm" novalidate  ng-if="evento.editable">
+            <td>
+                <input type="text" ng-model="evento.nome" required="true" name="nome" placeholder="Nome evento" ng-if="evento.editable"></input>
+                <span ng-if="!evento.editable">{{evento.nome}}</span>
+            </td>
+            <td>
+                <input type="date" ng-model="evento.data" required="true" name="data" placeholder="Data evento" ng-if="evento.editable"></input>
+                <span ng-if="!evento.editable">{{evento.data | date:'dd-MM-yyyy'}}</span>
+            </td>
+            <td>
+                <input type="text" ng-model="evento.luogo" required="true" name="Luogo Evento" placeholder="Luogo evento" ng-if="evento.editable"></input>
+                <span ng-if="!evento.editable">{{evento.luogo}}</span>
+            </td>
+            <td>
+                <ul>
+                    <span ng-class="opzioniModify" ng-if="evento.editable">
+                      <li ng-repeat="opzione in evento.opzioni">
+                          <input type="text" ng-model="opzione.nome" required="true" name="opzione" placeholder="Opzione"></input>
+                          <button ng-click="ctrl.rimuoviOpzione($parent.$index, $index)">X</button>
+                      </li>
+                      <br>
+                      <button ng-click="evento.opzioni.push({})">+</button>
+                    </span>
+                    <li class="options" ng-repeat="opzione in evento.opzioni" ng-if="!evento.editable">{{opzione.nome}}</li>
+                </ul>
+            </td>
+            <td>
+                <span class="vincoliModify" ng-if="evento.editable">
+                Min. <input type="text" ng-model="evento.vincoliPartecipanti.min" name="min"></input>
+                <br>
+                Max. <input type="text" ng-model="evento.vincoliPartecipanti.max" name="max"></input>
+              </span>
+                <span ng-if="!evento.editable">
+                  <span ng-if="!evento.vincoliPartecipanti.min&&!evento.vincoliPartecipanti.max">
+                    -
+                  </span>
+                  <span ng-if="!evento.vincoliPartecipanti.max&&evento.vincoliPartecipanti.min">
+                    > {{evento.vincoliPartecipanti.min}}
+                  </span>
+                  <span ng-if="!evento.vincoliPartecipanti.min&&evento.vincoliPartecipanti.max">
+                    < {{evento.vincoliPartecipanti.max}}
+                  </span>
+                  <span ng-if="evento.vincoliPartecipanti.min&&evento.vincoliPartecipanti.max">
+                    {{evento.vincoliPartecipanti.min}} - {{evento.vincoliPartecipanti.max}}
+                  </span>
+                </span>
+            </td>
+            <td>
+                <input type="image" class="tastoModifica" ng-click="evento.editable=true" ng-src="images/modifica.png" ng-if="!evento.editable">
+                </input>
+                <button class="tastoSalva" ng-click="ctrl.modificaEvento($index)" ng-if="evento.editable">Salva</button>
+            </td>
+            <td>
+                <input type="image" class="tastoElimina" ng-click="ctrl.eliminaEvento($index)" ng-src="images/delete.png"></input>
+            </td>
+
+          </form>
+        </tr>
+    </table>
 </div>

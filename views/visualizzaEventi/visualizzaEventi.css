@@ -1,0 +1,79 @@
+
+/*
+Visualizzazione Eventi
+ */
+
+.visualizzazioneEventi{
+  text-align: center;
+}
+
+.eventiTable {
+    width: 80%;
+    margin-top: 50px;
+    margin-left:10%;
+    margin-bottom: 50px;
+}
+
+.eventiTable, .eventiTable *{
+  text-align: center;
+}
+
+.eventiTable th, .eventiTable td {
+    padding: 8px;
+}
+
+.eventiTable tr input{
+  text-align: center;
+}
+
+.eventiTable tr:nth-child(even){background-color: #f2f2f2}
+
+.eventiTable tr:hover{
+  background-color: #FFFF99;
+}
+
+.eventiTable th {
+    background-color: #4CAF50;
+    color: white;
+ }
+
+ .rendimiBello .menu {
+   order: 2;
+ }
+ .rendimiBello .contenutoPrincipale {
+   order: 1;
+   display: flex;
+   flex-flow: column nowrap;
+   animation: 1.75s opacita;
+}
+
+.eventiTable .options:nth-child(even){
+  padding-top: 20px;
+}
+
+.tastoElimina, .tastoModifica{
+  width: 16px;
+  height: 16px;
+}
+.tastoSalva{
+  width: 48px;
+  height: 32px;
+}
+.opzioniModify>li{
+  display: inline-block;
+  margin-top: 15px;
+}
+.opzioniModify>li>input{
+  width:50%;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.opzioniModify>button{
+  margin-top: 15px;
+}
+.vincoliModify>input{
+  width:30%;
+}
+.vincoliModify>input[name='max']{
+  margin-top: 10px;
+}

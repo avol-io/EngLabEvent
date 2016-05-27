@@ -36,6 +36,32 @@ Per ogni utente si vuole salvare:
     /*
       FUNZIONI
      */
+     ctrl.registraUtente = registraUtente;
+
+     function registraUtente(){
+        var utente = ctrl.utente;
+
+        if(!$rootScope.utenti){
+            $rootScope.utenti = [];
+        }
+
+        ctrl.utenti = $rootScope.utenti;
+
+        //aggiungo l'utente inserito nella lista dei registrati
+        ctrl.utenti.push(ctrl.utente);
+
+        BootstrapDialog.show({
+            title: 'Conferma registrazione',
+            message: 'Utente registrato correttamente!',
+            closable: true,
+            buttons: [{
+                label: 'Ok',
+                action: function(dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+     }
 
   }
 })();

@@ -47,6 +47,7 @@ body.rendimiBello {
 .rendimiBello .menu {
   flex-grow: 1;
   margin: 2rem;
+  text-align: center;
 }
 .rendimiBello .contenutoPrincipale {
   flex-grow: 2;
@@ -90,7 +91,7 @@ MENU
  */
 
 .rendimiBello .menu button {
-  width: 100%;
+  width: 30%;
   margin-bottom: 1rem;
 }
 
@@ -121,7 +122,9 @@ contenutoPrincipale
   font-weight: 700;
   font-size: 0.8em;
 }
-.rendimiBello form input {
+.rendimiBello form input[type='text'],
+.rendimiBello form input[type='email'],
+.rendimiBello form input[type='date'] {
   webkit-appearance: none;
   -moz-appearance: none;
   display: block;
@@ -129,6 +132,23 @@ contenutoPrincipale
   height: 2rem;
   padding: .25rem;
   margin: 0 0 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+input[type='checkbox']{
+  webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 5%;
+  height: 1.5rem;
+  padding: .25rem;
+  margin: 10 0 1rem;
   border: 1px solid #ccc;
   border-radius: 0;
   background: #fff;

@@ -35,7 +35,7 @@ vincoliPartecipanti:{
     /*
       ATTRIBUTI
      */
-  
+
 
     //l'evento che si vuole creare
     ctrl.evento = {
@@ -46,7 +46,8 @@ vincoliPartecipanti:{
       vincoliPartecipanti: {
         min: null, //intero
         max: null, //intero
-      }
+      },
+      editable: false
     };
 
     /*
@@ -55,7 +56,7 @@ vincoliPartecipanti:{
     //visualizza opzioni
     ctrl.visualizzaOpzioni = false;
     //visualizza vincoli su i partecipanti
-  ctrl.visualizzaVincoli = false;
+    ctrl.visualizzaVincoli = false;
 
 
     /*
