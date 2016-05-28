@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<div class="visualizzazioneEventi"
-	ng-controller="visualizzaEventi as ctrl">
-	<h1>Visualizzazione Eventi</h1>
-	Numero eventi: {{ctrl.eventi.length || "0"}}
+<div class="visualizzazioneEventi" ng-controller="visualizzaEventi as ctrl">
+	<h1>Visualizzazione Eventi</h1> Numero eventi: {{ctrl.eventi.length || "0"}}
 	<fieldset class="elenco" ng-if="ctrl.eventi.length > 0">
 		<legend>Elenco Eventi</legend>
 		<table class="elencoEventi">
 			<tr class="title">
-				<td><label>Nome</label></td>
-				<td><label>Data</label></td>
-				<td><label>Luogo</label></td>
-				<td><label>Min Partecipanti</label></td>
-				<td><label>Max Partecipanti</label></td>
-				<td><label>Dettagli</label></td>
-				<td><label>Elimina</label></td>
-				<td ng-if="ctrl.utenti.length>0"><label>Aggiungi</label></td>
-				<td><label>Utenti Prenotati</label></td>
+				<th>Nome</th>
+				<th>Data</th>
+				<th>Luogo</th>
+				<th>Min Partecipanti</th>
+				<th>Max Partecipanti</th>
+				<th>Dettagli</th>
+				<th>Elimina</th>
+				<th>Aggiungi</th>
+				<th>Utenti Prenotati</th>
 			</tr>
 			<tr ng-repeat="evento in ctrl.eventi track by evento.id">
 				<td>{{evento.nome}}</td>
@@ -23,19 +21,19 @@
 				<td>{{evento.luogo}}</td>
 				<td>{{evento.vincoliPartecipanti.min || "0"}}</td>
 				<td>{{evento.vincoliPartecipanti.max || "0"}}</td>
-				<td><button class="visualizza"
-						ng-click="ctrl.visualizzaEvento(evento)"></button></td>
-				<td><button class="elimina"
-						ng-click="ctrl.eliminaEvento(evento)"></button></td>
-				<td ng-if="ctrl.utenti.length>0">
+				<td>
+					<button class="visualizza" ng-click="ctrl.visualizzaEvento(evento)"></button>
+				</td>
+				<td>
+					<button class="elimina" ng-click="ctrl.eliminaEvento(evento)"></button>
+				</td>
+				<td>
 					<button class="aggiungi" ng-click="ctrl.mostraUtenti(evento)"></button>
 				</td>
-				<td ng-if="evento.utenti.length>0">
-					<button class="utentiPrenotati"
-						ng-click="ctrl.visualizzaPartecipanti(evento)"></button>
+				<td >
+					<button ng-if="evento.utenti.length>0" class="utentiPrenotati" ng-click="ctrl.visualizzaPartecipanti(evento)"></button>
+					{{evento.utenti.length || "0"}}
 				</td>
-				<td ng-if="!evento.utenti.length">{{evento.utenti.length ||
-					"0"}}</td>
 			</tr>
 		</table>
 	</fieldset>
@@ -45,17 +43,18 @@
 		</legend>
 		<table class="elencoEventi">
 			<tr>
-				<td><b>Nome</b></td>
-				<td><b>Cognome</b></td>
-				<td><b>Email</b></td>
-				<td><b>Elimina</b></td>
+				<th>Nome</th>
+				<th>Cognome</th>
+				<th>Email</th>
+				<th>Elimina</th>
 			</tr>
 			<tr ng-repeat="utente in ctrl.evento.utenti track by utente.id">
 				<td>{{utente.nome}}</td>
 				<td>{{utente.cognome}}</td>
 				<td>{{utente.email}}</td>
-				<td><button class="elimina"
-						ng-click="ctrl.eliminaPartecipante(utente)"></button></td>
+				<td>
+					<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
+				</td>
 			</tr>
 			<tr>
 			</tr>
@@ -70,21 +69,21 @@
 		</legend>
 		<table class="elencoEventi">
 			<tr>
-				<td><b>Nome</b></td>
-				<td><b>Cognome</b></td>
-				<td><b>Email</b></td>
-				<td><b>Aggiungi</b></td>
+				<th>Nome</th>
+				<th>Cognome</th>
+				<th>Email</th>
+				<th>Aggiungi</th>
 			</tr>
-			<tr
-				ng-repeat="utente in ctrl.utenti | noDuplicati:ctrl.evento.utenti  track by utente.id ">
+			<tr ng-repeat="utente in ctrl.utenti | noDuplicati:ctrl.evento.utenti  track by utente.id ">
 				<td>{{utente.nome}}</td>
 				<td>{{utente.cognome}}</td>
 				<td>{{utente.email}}</td>
-				<td ng-if="!ctrl.evento.vincoliPartecipanti.max || !ctrl.evento.utenti || (ctrl.evento.utenti.length < ctrl.evento.vincoliPartecipanti.max)"><button class="add"
-						ng-click="ctrl.aggiungiPartecipante(utente)"></button></td>
+				<td ng-if="!ctrl.evento.vincoliPartecipanti.max || !ctrl.evento.utenti || (ctrl.evento.utenti.length < ctrl.evento.vincoliPartecipanti.max)">
+					<button class="add" ng-click="ctrl.aggiungiPartecipante(utente)"></button>
+				</td>
 				<td ng-if="ctrl.evento.vincoliPartecipanti.max && ctrl.evento.utenti && (ctrl.evento.utenti.length >= ctrl.evento.vincoliPartecipanti.max)"><b>Massimo Numero raggiunto</b></td>
 			</tr>
-			
+
 		</table>
 
 	</fieldset>
@@ -92,15 +91,14 @@
 	<fieldset ng-if="ctrl.visualizzaDettagli">
 		<fieldset class="informazioniGenerali">
 			<legend>Informazioni Principali Evento</legend>
-			<label>Nome Evento: <input type="text"
-				ng-model="ctrl.evento.nome" name="Nome Evento"
-				placeholder="Nome evento"></input>
-			</label> <label>Data Evento: <input type="date"
-				ng-model="ctrl.evento.data" name="Data Evento"
-				placeholder="Data evento"></input>
-			</label> <label>Luogo Evento: <input type="text"
-				ng-model="ctrl.evento.luogo" name="Luogo Evento"
-				placeholder="Luogo evento"></input>
+			<label>Nome Evento:
+				<input type="text" ng-model="ctrl.evento.nome" name="Nome Evento" placeholder="Nome evento"></input>
+			</label>
+			<label>Data Evento:
+				<input type="date" ng-model="ctrl.evento.data" name="Data Evento" placeholder="Data evento"></input>
+			</label>
+			<label>Luogo Evento:
+				<input type="text" ng-model="ctrl.evento.luogo" name="Luogo Evento" placeholder="Luogo evento"></input>
 			</label>
 
 		</fieldset>
@@ -110,10 +108,10 @@
 			<legend>Gestione Opzioni</legend>
 			<ul>
 				<li ng-repeat="opzione in ctrl.evento.opzioni track by opzione.nome">
-					<label> <input type="text" ng-model="opzione.nome"
-						name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
+					<label>
+						<input type="text" ng-model="opzione.nome" name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
 						<button ng-click="ctrl.rimuoviOpzione(opzione)">x</button>
-				</label>
+					</label>
 				</li>
 			</ul>
 			<div class="operazioni">
@@ -125,17 +123,14 @@
 
 		<fieldset class="opzioni">
 			<legend>Vincoli sui partecipanti</legend>
-			<label>Vincoli su numero partecipanti: <input type="checkbox" ng-checked="ctrl.visualizzaVincoli"
-				ng-model="ctrl.visualizzaVincoli" name="Vincoli su partecipanti"
-				ng-change="ctrl.alCambiamentoDelVincoloSuIPartecipanti()"></input>
-			</label> <label ng-if="ctrl.visualizzaVincoli" >Minimo numero
-				partecipanti:  <input type="number" max="999" min="1"
-				ng-model="ctrl.evento.vincoliPartecipanti.min"
-				name="Minimo numero partecipanti"></input>
-			</label> <label ng-if="ctrl.visualizzaVincoli">Massimo numero
-				partecipanti:  <input type="number" max="999" min="1"
-				ng-model="ctrl.evento.vincoliPartecipanti.max"
-				name="Minimo numero partecipanti"></input>
+			<label>Vincoli su numero partecipanti:
+				<input type="checkbox" ng-checked="ctrl.visualizzaVincoli" ng-model="ctrl.visualizzaVincoli" name="Vincoli su partecipanti" ng-change="ctrl.alCambiamentoDelVincoloSuIPartecipanti()"></input>
+			</label>
+			<label ng-if="ctrl.visualizzaVincoli">Minimo numero partecipanti:
+				<input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.min" name="Minimo numero partecipanti"></input>
+			</label>
+			<label ng-if="ctrl.visualizzaVincoli">Massimo numero partecipanti:
+				<input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.max" name="Minimo numero partecipanti"></input>
 			</label>
 
 		</fieldset>
