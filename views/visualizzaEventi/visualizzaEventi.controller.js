@@ -3,97 +3,206 @@ VISUALIZZA EVENTI
 Questo controller si occuperà di gestire tutta la logica di visualizzazione della lista degli eventi e alcune semplici operazioni su di essa.
 - Eliminazione evento
 - Chiamata a pagina aggiunti evento
-*/
+ */
 
 
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('engLabEvents')
-    .controller('visualizzaEventi', visualizzaEventi);
+	angular
+	.module('engLabEvents')
+	.controller('visualizzaEventi', visualizzaEventi);
 
-  visualizzaEventi.$inject = ['$rootScope'];
+	angular
+	.module('engLabEvents').filter('noDuplicati', function(){
+		return function(array, filtro){
+			if(!filtro){
+				return array;
+			}
+			var result = [];
+			array.forEach(function(utente){
+				var trovato=false;
+				filtro.forEach(function(item){
+					if(item.id === utente.id){
+						trovato=true;
+					}
+				});
+				if(!trovato){
+					result.push(utente);
+				}
+			});
+			return result;
+		};
+	});
 
-  /* @ngInject */
-  function visualizzaEventi($rootScope) {
-    var ctrl = this;
+	visualizzaEventi.$inject = ['$rootScope'];
+
+	/* @ngInject */
+	function visualizzaEventi($rootScope) {
+		var ctrl = this;
 
 
-    /*
+		/*
       ATTRIBUTI
-     */
-    //la lista degli eventi
-    ctrl.eventi=$rootScope.eventi; //rootScope lo usiamo solo finchè non faremo i service!!
+		 */
+		//la lista degli eventi
+		ctrl.eventi=$rootScope.eventi; //rootScope lo usiamo solo finchè non faremo i service!!
+		//lista utenti
+		ctrl.utenti=$rootScope.utenti;
 
-    /*
+		ctrl.evento=null;
+		
+		if(ctrl.eventi && (!ctrl.utenti || ctrl.utenti.length == 0)){
+			ctrl.eventi.forEach(function (evento){
+				if(evento.utenti){
+					evento.utenti=null;
+				}
+			});
+		}else if(ctrl.eventi && ctrl.utenti && ctrl.utenti.length > 0){
+			ctrl.eventi.forEach(function (evento){
+				if(evento.utenti && evento.utenti.length > 0){
+					evento.utenti.forEach(function(utente){
+						var trovato=false;
+						ctrl.utenti.forEach(function(current){
+							if(current.id === utente.id){
+								trovato=true;
+							}
+						});
+						if(!trovato){
+							evento.utenti.splice(utente, 1);
+						}
+					});
+				}
+			});
+		}
+		/*
     Variabili di flusso
-     */
+		 */
+		ctrl.visualizzaDettagli=false;
+		ctrl.modificaEvento=false;
+		ctrl.visualizzaUtenti=false;
+		ctrl.visualizzaLista=false;
+		ctrl.visualizzaVincoli = false;
+		/*
+  FUNZIONI
+		 */
 
-    //rimuovi evento
-    ctrl.rimuoviEvento = rimuoviEvento;
-    //modifica evento
-    ctrl.modificaEvento = modificaEvento;
-    //fine modifica evento
-    ctrl.fineModificaEvento = fineModificaEvento;
-    //aggiungi opzione
-    ctrl.aggiungiOpzione = aggiungiOpzione;
-    //rimuovi opzione
-    ctrl.rimuoviOpzione = rimuoviOpzione;
+		ctrl.visualizzaEvento=visualizzaEvento;
+		ctrl.eliminaEvento=eliminaEvento;
+		ctrl.mostraUtenti=mostraUtenti;
+		ctrl.aggiungiPartecipante=aggiungiPartecipante;
+		ctrl.eliminaPartecipante=eliminaPartecipante;
+		ctrl.visualizzaPartecipanti=visualizzaPartecipanti;
+		//aggiungi opzione
+		ctrl.aggiungiOpzione = aggiungiOpzione;
+		//rimuovi opzione
+		ctrl.rimuoviOpzione = rimuoviOpzione;
+		//cambia la visualizzazione dei vincoli
+		ctrl.alCambiamentoDelVincoloSuIPartecipanti = alCambiamentoDelVincoloSuIPartecipanti;
 
+		/**
+		 * Aggiunge un'opzione
+		 */
+		function aggiungiOpzione() {
+			ctrl.evento.opzioni.push({
+				'nome': ''
+			});
+		}
 
-    /*
-      FUNZIONI
-     */
-     /*
-     Rimuove un evento
-      */
-     function rimuoviEvento(evento) {
-       for (var i = ctrl.eventi.length - 1; i >= 0; i--) {
-         if (ctrl.eventi[i].id === evento.id) {
-           ctrl.eventi.splice(i, 1);
-         }
-       }
-     }
+		/*
+    Rimuove un opzione
+		 */
+		function rimuoviOpzione(opzione) {
+			for (var i = ctrl.evento.opzioni.length - 1; i >= 0; i--) {
+				if (ctrl.evento.opzioni[i].nome === opzione.nome) {
+					ctrl.evento.opzioni.splice(i, 1);
+				}
+			}
+		}
+		/*
+    Pulisce i vincoli
+		 */
+		function alCambiamentoDelVincoloSuIPartecipanti() {
+			if(!ctrl.evento.vincoliPartecipanti){
+				ctrl.evento.vincoliPartecipanti = {};
+			}
+			ctrl.evento.vincoliPartecipanti.min =null;
+			ctrl.evento.vincoliPartecipanti.max=null;
+		}
 
-     /*
-     Modifica evento
-      */
-     function modificaEvento(evento) {
-       evento.edit = true;
-       for (var i = ctrl.eventi.length - 1; i >= 0; i--) {
-         if (ctrl.eventi[i].id != evento.id) {
-           ctrl.eventi[i].edit = false;
-         }
-       }
-     }
+		function visualizzaEvento(evento){
+			if(!ctrl.visualizzaDettagli){
+				ctrl.visualizzaUtenti=false;
+				ctrl.visualizzaLista=false;
+			}
+			if(!ctrl.evento || evento.id===ctrl.evento.id){
+				ctrl.visualizzaDettagli=!ctrl.visualizzaDettagli;
+			}else{
+				ctrl.visualizzaDettagli=true;
+			}
+			ctrl.evento=evento;
+			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.vincoliPartecipanti.min && ctrl.evento.vincoliPartecipanti.max){
+				ctrl.visualizzaVincoli=true;
+			}else{
+				ctrl.visualizzaVincoli=false;
+			}
+			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.utenti && ctrl.evento.vincoliPartecipanti.max  && ctrl.evento.vincoliPartecipanti.max < ctrl.evento.utenti.length){
+				ctrl.evento.utenti=[];
+			}
+		}
+		function visualizzaPartecipanti(evento){
+			if(!ctrl.visualizzaLista){
+				ctrl.visualizzaUtenti=false;
+				ctrl.visualizzaDettagli=false;
+			}
+			if(!ctrl.evento || evento.id===ctrl.evento.id){
+				ctrl.visualizzaLista=!ctrl.visualizzaLista;
+			}
+			ctrl.evento=evento;
+			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.utenti && ctrl.evento.vincoliPartecipanti.max  && ctrl.evento.vincoliPartecipanti.max < ctrl.evento.utenti.length){
+				ctrl.evento.utenti=[];
+			}
+		}
 
-     /*
-     Modifica evento
-      */
-     function fineModificaEvento(evento) {
-       evento.edit = false;
-     }
+		function aggiungiPartecipante(utente){
+			if(!ctrl.evento.utenti){
+				ctrl.evento.utenti=[];
+			}
+			ctrl.evento.utenti.push(utente);
+			if(ctrl.evento.utenti.length == ctrl.utenti.length){
+				ctrl.visualizzaUtenti=false;
+			}
+		}
+		
+		function eliminaPartecipante(utente){
+			ctrl.evento.utenti.splice(utente, 1);
+			if(ctrl.evento.utenti.length == 0){
+				ctrl.visualizzaLista=false;
+			}
+		}
 
-     /**
-      * Aggiunge un'opzione
-      */
-     function aggiungiOpzione(evento) {
-       evento.opzioni.push({
-         'nome': ''
-       });
-     }
+		function mostraUtenti(evento){
+			if(!ctrl.visualizzaUtenti){
+				ctrl.visualizzaDettagli=false;
+				ctrl.visualizzaLista=false;
+			}
+			if(!ctrl.evento || evento.id===ctrl.evento.id){
+				ctrl.visualizzaUtenti=!ctrl.visualizzaUtenti;
+			}
+			ctrl.evento=evento;
+			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.utenti && ctrl.evento.vincoliPartecipanti.max  && ctrl.evento.vincoliPartecipanti.max < ctrl.evento.utenti.length){
+				ctrl.evento.utenti=[];
+			}
+		}
 
-     /*
-     Rimuove un opzione
-      */
-     function rimuoviOpzione(evento,opzione) {
-       for (var i = evento.opzioni.length - 1; i >= 0; i--) {
-         if (evento.opzioni[i].nome === opzione.nome) {
-           evento.opzioni.splice(i, 1);
-         }
-       }
-     }
+		function salvaEvento(){
+			$rootScope.eventi.push(ctrl.evento);
+			ctrl.visualizzaDettagli=false;
+		}
 
-  }
+		function eliminaEvento(evento){
+			ctrl.eventi.splice(evento, 1);
+		}
+
+	}
 })();
