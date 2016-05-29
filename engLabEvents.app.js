@@ -2,7 +2,7 @@
   'use strict';
 
   //creo il modulo principale/app
-  var engLabEvents = angular.module('engLabEvents', []);
+  var engLabEvents = angular.module('engLabEvents', [ 'ngStorage', 'ui.router']);
 
   //definisco il controller che associo a tutta l'app e che governerà gli aspetti generali.
   engLabEvents.controller('controllerApp', function() {
@@ -12,7 +12,7 @@
       Attributi
      */
     ctrlApp.templatePage = null;
-    ctrlApp.paginaCorrente = null;
+    ctrlApp.paginaCorrente = 'home';
 
     /*
     Funzioni
@@ -25,7 +25,7 @@
         ctrlApp.templatePage = 'views/' + nomePagina + '/' + nomePagina + '.view.html';
       } else {
         ctrlApp.templatePage = null;
-        ctrlApp.paginaCorrente = null;
+        ctrlApp.paginaCorrente = 'home';
       }
     }
 

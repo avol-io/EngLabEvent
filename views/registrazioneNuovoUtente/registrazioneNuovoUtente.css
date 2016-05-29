@@ -1,35 +1,36 @@
-.rendimiBello .contenutoPrincipale .registrazioneNuovoUtente button{
+/*.rendimiBello .contenutoPrincipale .registrazioneNuovoUtente button{
 	width:30px;
 	height:30px;
 	cursor:pointer;
-}
+}*/
 
 .rendimiBello .contenutoPrincipale .registrazioneNuovoUtente .operazioni .salva {
 	background: transparent url("../../img/conferma.png") no-repeat ;
 	background-size: 30px 30px;
-	
+
 }
 
 .rendimiBello .contenutoPrincipale .registrazioneNuovoUtente .utentiCreati .elimina {
 	background: transparent url("../../img/elimina.png") no-repeat ;
 	background-size: 30px 30px;
-	
-}
 
+}
+/*
 .rendimiBello .contenutoPrincipale .registrazioneNuovoUtente .utentiCreati .elencoUtenti {
 	border: 1px solid black;
 	width: 100%;
-	
-}
+
+}*/
+/*
 .rendimiBello .contenutoPrincipale .registrazioneNuovoUtente .utentiCreati .elencoUtenti td{
 	text-align: center;
 	border: 1px solid black;
-}
-
+}*/
+/*
 .rendimiBello.registrazioneNuovoUtente .menu {
   order: 2;
-}
-
+}*/
+/*
 .rendimiBello.registrazioneNuovoUtente .contenutoPrincipale {
   order: 1;
   display: flex;
@@ -41,4 +42,4 @@ body.registrazioneNuovoUtente.rendimiBello  {
   padding-top: 100px;
   background-position-y: -30px;
   background-size: 550px;
-}
+}*/

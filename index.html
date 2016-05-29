@@ -14,6 +14,10 @@
   <script src="engLabEvents.app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
 
+  <!-- lib esterne -->
+  <script src="extra/angular-ui-router.js" charset="utf-8"></script>
+  <script src="extra/ngStorage.js" charset="utf-8"></script>
+
   <!-- creaEvento-->
   <script src="views/creaEvento/creaEvento.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/creaEvento/creaEvento.css" media="screen" title="no title" charset="utf-8">
@@ -32,7 +36,7 @@
 
 
   <div class="menu">
-    <ul ng-if="!ctrlApp.paginaCorrente">
+    <ul ng-if="!ctrlApp.templatePage">
       <li>
         <button ng-click="ctrlApp.cambiaPagina('creaEvento')">Crea Evento</button>
       </li>
@@ -43,7 +47,7 @@
         <button ng-click="ctrlApp.cambiaPagina('registrazioneNuovoUtente')">Registrati</button>
       </li>
     </ul>
-    <div ng-if="ctrlApp.paginaCorrente">
+    <div ng-if="ctrlApp.templatePage">
       <button ng-click="ctrlApp.cambiaPagina(null)">Indietro</button>
     </div>
   </div>

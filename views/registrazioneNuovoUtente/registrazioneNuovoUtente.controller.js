@@ -17,25 +17,25 @@ Per ogni utente si vuole salvare:
 	.module('engLabEvents')
 	.controller('registrazioneNuovoUtente', registrazioneNuovoUtente);
 
-	registrazioneNuovoUtente.$inject = ['$rootScope'];
+	registrazioneNuovoUtente.$inject = ['$localStorage'];
 
 	/* @ngInject */
-	function registrazioneNuovoUtente($rootScope) {
+	function registrazioneNuovoUtente($localStorage) {
 		var ctrl = this;
-		
+		/*
+			ATTRIBUTI
+		 */
 		ctrl.utente = {
 				nome:null,
 				cognome:null,
 				email:null
 
 		};
-		ctrl.utenti = $rootScope.utenti;
+		ctrl.utenti = $localStorage.utenti;
 
 
-		/*
-      ATTRIBUTI
-		 */
-		
+
+
 
 		/*
     Variabili di flusso
@@ -50,24 +50,27 @@ Per ogni utente si vuole salvare:
 		ctrl.elimina = elimina;
 
 		function salva(){
-			if (!$rootScope.utenti) {
-				$rootScope.utenti = [];
-			}
 			ctrl.utente.id = Math.ceil(Math.random() * 100);
-			$rootScope.utenti.push(ctrl.utente);
-			ctrl.utenti=$rootScope.utenti;
+			ctrl.utenti.push(ctrl.utente);
 			ctrl.pulisci();
 		}
 
 		function pulisci() {
 			ctrl.utente = {};
 		}
-		
-		function elimina(utente){
-			$rootScope.utenti.splice(utente, 1);
-			ctrl.utenti=$rootScope.utenti;
-	    }
 
+		function elimina(utente){
+			ctrl.utenti.splice(utente, 1);
+		}
+
+
+		function init(){
+			if (!$localStorage.utenti) {
+				$localStorage.utenti = [];
+			}
+				ctrl.utenti = $localStorage.utenti;
+		}
+		init();
 
 	}
 })();

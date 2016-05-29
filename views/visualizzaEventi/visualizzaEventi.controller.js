@@ -13,32 +13,10 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 	.module('engLabEvents')
 	.controller('visualizzaEventi', visualizzaEventi);
 
-	angular
-	.module('engLabEvents').filter('noDuplicati', function(){
-		return function(array, filtro){
-			if(!filtro){
-				return array;
-			}
-			var result = [];
-			array.forEach(function(utente){
-				var trovato=false;
-				filtro.forEach(function(item){
-					if(item.id === utente.id){
-						trovato=true;
-					}
-				});
-				if(!trovato){
-					result.push(utente);
-				}
-			});
-			return result;
-		};
-	});
-
-	visualizzaEventi.$inject = ['$rootScope'];
+	visualizzaEventi.$inject = ['$localStorage'];
 
 	/* @ngInject */
-	function visualizzaEventi($rootScope) {
+	function visualizzaEventi($localStorage) {
 		var ctrl = this;
 
 
@@ -46,35 +24,13 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
       ATTRIBUTI
 		 */
 		//la lista degli eventi
-		ctrl.eventi=$rootScope.eventi; //rootScope lo usiamo solo finchè non faremo i service!!
+		ctrl.eventi=$localStorage.eventi; //rootScope lo usiamo solo finchè non faremo i service!!
 		//lista utenti
-		ctrl.utenti=$rootScope.utenti;
+		ctrl.utenti=$localStorage.utenti;
 
 		ctrl.evento=null;
-		
-		if(ctrl.eventi && (!ctrl.utenti || ctrl.utenti.length == 0)){
-			ctrl.eventi.forEach(function (evento){
-				if(evento.utenti){
-					evento.utenti=null;
-				}
-			});
-		}else if(ctrl.eventi && ctrl.utenti && ctrl.utenti.length > 0){
-			ctrl.eventi.forEach(function (evento){
-				if(evento.utenti && evento.utenti.length > 0){
-					evento.utenti.forEach(function(utente){
-						var trovato=false;
-						ctrl.utenti.forEach(function(current){
-							if(current.id === utente.id){
-								trovato=true;
-							}
-						});
-						if(!trovato){
-							evento.utenti.splice(utente, 1);
-						}
-					});
-				}
-			});
-		}
+
+
 		/*
     Variabili di flusso
 		 */
@@ -83,6 +39,8 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.visualizzaUtenti=false;
 		ctrl.visualizzaLista=false;
 		ctrl.visualizzaVincoli = false;
+
+		
 		/*
   FUNZIONI
 		 */
@@ -173,7 +131,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 				ctrl.visualizzaUtenti=false;
 			}
 		}
-		
+
 		function eliminaPartecipante(utente){
 			ctrl.evento.utenti.splice(utente, 1);
 			if(ctrl.evento.utenti.length == 0){

@@ -3,22 +3,6 @@
 Crea Evento
  */
 
-body.creaEvento.rendimiBello  {
-  padding-top: 100px;
-  background-position-y: -30px;
-  background-size: 550px;
-}
-
-.rendimiBello.creaEvento .menu {
-  order: 2;
-}
-.rendimiBello.creaEvento .contenutoPrincipale {
-  order: 1;
-  display: flex;
-  flex-flow: column nowrap;
-  animation: 1.75s opacita;
-}
-
 
 .rendimiBello .creaEvento .opzioni li {}
 .rendimiBello .creaEvento .opzioni label {

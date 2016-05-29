@@ -3,15 +3,6 @@ body.visualizzazioneEventi.rendimiBello {
   background-position-y: -30px;
   background-size: 550px;
 }
-.rendimiBello .menu {
-  order: 2;
-}
-.rendimiBello .contenutoPrincipale {
-  order: 1;
-  display: flex;
-  flex-flow: column nowrap;
-  animation: 1.75s opacita;
-}
 
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .elencoEventi button {
   width: 30px;
@@ -69,42 +60,4 @@ body.visualizzazioneEventi.rendimiBello {
   flex-shrink: 1;
   flex-grow: 1;
   height: 2.6rem;
-}
-/*by dario2016*/
-.rendimiBello table {
-  width: 100%;
- table-layout: fixed;
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-/*.rendimiBello table, table * {
-  text-align: center;
-}*/
-.rendimiBello table td{
-
-}
-.rendimiBello table th, table td {
-  padding: 8px;
-	overflow: hidden;
-    max-width: 25%;
-    width: 25%;
-
-    word-wrap: break-word;
-		text-align: center;
-}
-.rendimiBello table tr input {
-  text-align: center;
-}
-.rendimiBello table tr:nth-child(even) {
-  background-color: #f2f2f2
-}
-.rendimiBello table tr:hover {
-  background-color: #FFFF99;
-}
-.rendimiBello table th {
-  background-color: #4CAF50;
-  color: white;
-}
-.rendimiBello table .options:nth-child(even) {
-  padding-top: 20px;
 }
