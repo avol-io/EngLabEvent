@@ -13,10 +13,10 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 	.module('engLabEvents')
 	.controller('visualizzaEventi', visualizzaEventi);
 
-	visualizzaEventi.$inject = ['$localStorage'];
+	visualizzaEventi.$inject = ['$localStorage','$state'];
 
 	/* @ngInject */
-	function visualizzaEventi($localStorage) {
+	function visualizzaEventi($localStorage,$state) {
 		var ctrl = this;
 
 
@@ -40,7 +40,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.visualizzaLista=false;
 		ctrl.visualizzaVincoli = false;
 
-		
+
 		/*
   FUNZIONI
 		 */
@@ -89,24 +89,25 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		}
 
 		function visualizzaEvento(evento){
-			if(!ctrl.visualizzaDettagli){
-				ctrl.visualizzaUtenti=false;
-				ctrl.visualizzaLista=false;
-			}
-			if(!ctrl.evento || evento.id===ctrl.evento.id){
-				ctrl.visualizzaDettagli=!ctrl.visualizzaDettagli;
-			}else{
-				ctrl.visualizzaDettagli=true;
-			}
-			ctrl.evento=evento;
-			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.vincoliPartecipanti.min && ctrl.evento.vincoliPartecipanti.max){
-				ctrl.visualizzaVincoli=true;
-			}else{
-				ctrl.visualizzaVincoli=false;
-			}
-			if(ctrl.evento.vincoliPartecipanti && ctrl.evento.utenti && ctrl.evento.vincoliPartecipanti.max  && ctrl.evento.vincoliPartecipanti.max < ctrl.evento.utenti.length){
-				ctrl.evento.utenti=[];
-			}
+			$state.go('visualizzaEvento',{id:evento.id});
+			// if(!ctrl.visualizzaDettagli){
+			// 	ctrl.visualizzaUtenti=false;
+			// 	ctrl.visualizzaLista=false;
+			// }
+			// if(!ctrl.evento || evento.id===ctrl.evento.id){
+			// 	ctrl.visualizzaDettagli=!ctrl.visualizzaDettagli;
+			// }else{
+			// 	ctrl.visualizzaDettagli=true;
+			// }
+			// ctrl.evento=evento;
+			// if(ctrl.evento.vincoliPartecipanti && ctrl.evento.vincoliPartecipanti.min && ctrl.evento.vincoliPartecipanti.max){
+			// 	ctrl.visualizzaVincoli=true;
+			// }else{
+			// 	ctrl.visualizzaVincoli=false;
+			// }
+			// if(ctrl.evento.vincoliPartecipanti && ctrl.evento.utenti && ctrl.evento.vincoliPartecipanti.max  && ctrl.evento.vincoliPartecipanti.max < ctrl.evento.utenti.length){
+			// 	ctrl.evento.utenti=[];
+			// }
 		}
 		function visualizzaPartecipanti(evento){
 			if(!ctrl.visualizzaLista){
@@ -154,7 +155,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		}
 
 		function salvaEvento(){
-			$rootScope.eventi.push(ctrl.evento);
+			$localStorage.eventi.push(ctrl.evento);
 			ctrl.visualizzaDettagli=false;
 		}
 

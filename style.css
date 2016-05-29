@@ -272,3 +272,15 @@ body.rendimiBello.home {
      width: 100%;
      overflow-x: auto
  }*/
+
+
+ .infoStato{
+   border: 1px solid #dedede;
+   background: #efefef;
+   color:#3e3e3e;
+   font-weight: 200;
+   word-break: break-all;
+   overflow-y: scroll;
+   margin: 1rem;
+   padding: 1rem;
+ }

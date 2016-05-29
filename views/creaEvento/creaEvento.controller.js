@@ -25,10 +25,10 @@ vincoliPartecipanti:{
 	.module('engLabEvents')
 	.controller('creaEvento', creaEvento);
 
-	creaEvento.$inject = ['$localStorage'];
+	creaEvento.$inject = ['$localStorage','$state'];
 
 	/* @ngInject */
-	function creaEvento($localStorage) {
+	function creaEvento($localStorage,$state) {
 		var ctrl = this;
 
 
@@ -83,6 +83,9 @@ vincoliPartecipanti:{
 			ctrl.evento.id = Math.ceil(Math.random() * 100);
 			ctrl.eventi.push(ctrl.evento);
 			alert('Evento Salvato');
+
+			console.log({id:ctrl.evento.id});
+			$state.go('visualizzaEvento',{id:ctrl.evento.id});
 			ctrl.pulisci();
 		}
 
