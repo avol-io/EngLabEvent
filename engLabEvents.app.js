@@ -133,8 +133,9 @@
       var profile = $localStorage.utenteLoggato;
 
       if (!profile) {
-
-        $state.go('login');
+        if(next.indexOf('registrati')<=0){ //prossimamente gestiremo i percorsi validi da loggati e non
+          $state.go('login');
+        }
       }
 
     });
