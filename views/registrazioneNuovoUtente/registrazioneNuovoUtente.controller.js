@@ -28,7 +28,8 @@ Per ogni utente si vuole salvare:
 		ctrl.utente = {
 				nome:null,
 				cognome:null,
-				email:null
+				email:null,
+				password:null
 
 		};
 		ctrl.utenti = $localStorage.utenti;

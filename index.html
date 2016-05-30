@@ -21,6 +21,11 @@
   <script src="views/home/home.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/home/home.css" media="screen" title="no title" charset="utf-8">
 
+  <!-- login-->
+  <script src="views/login/login.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/login/login.css" media="screen" title="no title" charset="utf-8">
+
+
   <!-- creaEvento-->
   <script src="views/creaEvento/creaEvento.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/creaEvento/creaEvento.css" media="screen" title="no title" charset="utf-8">
@@ -55,8 +60,11 @@
       <li>
         <button ui-sref="registrazioneNuovoUtente">Registrati</button>
       </li>
+      <li>
+        <button ng-click="ctrlApp.logout()">Logout</button>
+      </li>
     </ul>
-    <div ng-if="ctrlApp.statoCorrente.name!='home'">
+    <div ng-if="ctrlApp.statoCorrente.name!='home'&&ctrlApp.statoCorrente.name!='login'"><!-- si può scrivere meglio-->
       <button ng-click="ctrlApp.indietro()">Indietro</button>
     </div>
   </div>

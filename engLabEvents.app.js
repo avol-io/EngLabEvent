@@ -42,6 +42,15 @@
       controllerAs: 'ctrl'
     });
 
+    $stateProvider.state('login', {
+      name: 'login',
+      url: '/login',
+      templateUrl: 'views/login/login.view.html',
+      controller: 'login',
+      controllerAs: 'ctrl'
+    });
+
+
     $stateProvider.state('creaEvento', {
       name: 'creaEvento',
       indietro: 'home',
@@ -72,7 +81,7 @@
     $stateProvider.state('registrazioneNuovoUtente', {
       name: 'registraNuovoUtente',
       url: '/registrati',
-      indietro: 'home',
+      //indietro: 'home',
       templateUrl: 'views/registrazioneNuovoUtente/registrazioneNuovoUtente.view.html',
       controller: 'registrazioneNuovoUtente',
       controllerAs: 'ctrl'
@@ -88,9 +97,9 @@
   //definisco il controller che associo a tutta l'app e che governerà gli aspetti generali.
   engLabEvents.controller('controllerApp', controllerApp);
 
-  controllerApp.$inject = ['$state', '$timeout', '$rootScope'];
+  controllerApp.$inject = ['$state', '$timeout', '$rootScope','$localStorage'];
 
-  function controllerApp($state, $timeout, $rootScope) {
+  function controllerApp($state, $timeout, $rootScope,$localStorage) {
     var ctrlApp = this;
 
     /*
@@ -106,6 +115,7 @@
      */
     ctrlApp.indietro = indietro;
     ctrlApp.cambiaStato = cambiaStato;
+    ctrlApp.logout = logout;
 
 
     /*
@@ -117,6 +127,17 @@
       ctrlApp.statoPrecedente = fromstate;
     });
 
+    //Intercetto il cambio di location e verifico se l'utente è loggato e in futuro se potrà accedere a quel percorso
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+
+      var profile = $localStorage.utenteLoggato;
+
+      if (!profile) {
+
+        $state.go('login');
+      }
+
+    });
 
     //va allo stato precedente
     function indietro() {
@@ -139,7 +160,24 @@
     }
 
 
+    function logout() {
+      $localStorage.utenteLoggato = null;
+      $state.go('login');
+    }
+
+    function init() {
+      if ($localStorage.utenteLoggato) {
+        ctrlApp.utente = $localStorage.utenteLoggato;
+      } else {
+        $timeout(function() {
+          $state.go('login');
+        }, 10);
+      }
+    }
+    init();
+
 
   }
+
 
 })();
