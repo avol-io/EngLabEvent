@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<div class="login">
+
+	<h1>Login</h1>
+	<form novalidate name="loginForm">
+		<fieldset class="informazioniUtente">
+
+			<label>Email:
+				<input type="text" ng-model="ctrl.utente.email" required="true" name="Email" placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/"></input>
+			</label>
+			<label>Password:
+				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password" ></input>
+			</label>
+			<div class="operazioni">
+				<button class="login" ng-click="ctrl.login()" >Login</button>
+				<button class="registrazione" ng-click="ctrl.registrazioneNuovoUtente()" >Registrati</button>
+			</div>
+		</fieldset>
+	</form>
+
+
+</div>

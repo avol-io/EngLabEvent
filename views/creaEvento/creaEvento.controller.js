@@ -25,10 +25,10 @@ vincoliPartecipanti:{
 	.module('engLabEvents')
 	.controller('creaEvento', creaEvento);
 
-	creaEvento.$inject = ['$rootScope'];
+	creaEvento.$inject = ['$localStorage','$state'];
 
 	/* @ngInject */
-	function creaEvento($rootScope) {
+	function creaEvento($localStorage,$state) {
 		var ctrl = this;
 
 
@@ -46,7 +46,7 @@ vincoliPartecipanti:{
 				edit: false,
 				vincoliPartecipanti: {
 					min: null, //intero
-					max: null, //intero		
+					max: null, //intero
 				}
 		};
 
@@ -80,13 +80,12 @@ vincoliPartecipanti:{
 		 * @return void
 		 */
 		function salva() {
-			if (!$rootScope.eventi) {
-				$rootScope.eventi = [];
-			}
-
 			ctrl.evento.id = Math.ceil(Math.random() * 100);
-			$rootScope.eventi.push(ctrl.evento);
+			ctrl.eventi.push(ctrl.evento);
 			alert('Evento Salvato');
+
+			console.log({id:ctrl.evento.id});
+			$state.go('visualizzaEvento',{id:ctrl.evento.id});
 			ctrl.pulisci();
 		}
 
@@ -139,6 +138,14 @@ vincoliPartecipanti:{
 			ctrl.evento.vincoliPartecipanti.max=null;
 		}
 
+
+		function init(){
+			if (!$localStorage.eventi) {
+				$localStorage.eventi = [];
+			}
+			ctrl.eventi=$localStorage.eventi;
+		}
+		init();
 
 	}
 })();

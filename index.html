@@ -14,6 +14,18 @@
   <script src="engLabEvents.app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
 
+  <!-- lib esterne -->
+  <script src="extra/angular-ui-router.js" charset="utf-8"></script>
+  <script src="extra/ngStorage.js" charset="utf-8"></script>
+  <!-- home-->
+  <script src="views/home/home.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/home/home.css" media="screen" title="no title" charset="utf-8">
+
+  <!-- login-->
+  <script src="views/login/login.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/login/login.css" media="screen" title="no title" charset="utf-8">
+
+
   <!-- creaEvento-->
   <script src="views/creaEvento/creaEvento.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/creaEvento/creaEvento.css" media="screen" title="no title" charset="utf-8">
@@ -25,30 +37,41 @@
   <!-- visualizzaEventi-->
   <script src="views/registrazioneNuovoUtente/registrazioneNuovoUtente.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/registrazioneNuovoUtente/registrazioneNuovoUtente.css" media="screen" title="no title" charset="utf-8">
+
+  <!-- visualizzaEvento-->
+  <script src="views/visualizzaEvento/visualizzaEvento.controller.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="views/visualizzaEvento/visualizzaEvento.css" media="screen" title="no title" charset="utf-8">
+
 </head>
 
-<body class="rendimiBello" ng-controller="controllerApp as ctrlApp" ng-class="ctrlApp.paginaCorrente">
+<body class="rendimiBello" ng-controller="controllerApp as ctrlApp" >
 
 
 
-  <div class="menu">
-    <ul ng-if="!ctrlApp.paginaCorrente">
+   <div class="menu">
+    <div class="infoStato"><b>Info sullo stato:</b><br/>{{ctrlApp.statoCorrente}}</div>
+    <ul ng-if="ctrlApp.statoCorrente.name==='home'">
       <li>
-        <button ng-click="ctrlApp.cambiaPagina('creaEvento')">Crea Evento</button>
+        <button  ui-sref="creaEvento">Crea Evento</button>
       </li>
       <li>
-        <button ng-click="ctrlApp.cambiaPagina('visualizzaEventi')">Visualizza Eventi</button>
+        <button ui-sref="visualizzaEventi">Visualizza Eventi</button>
       </li>
       <li>
-        <button ng-click="ctrlApp.cambiaPagina('registrazioneNuovoUtente')">Registrati</button>
+        <button ui-sref="registrazioneNuovoUtente">Registrati</button>
+      </li>
+      <li>
+        <button ng-click="ctrlApp.logout()">Logout</button>
       </li>
     </ul>
-    <div ng-if="ctrlApp.paginaCorrente">
-      <button ng-click="ctrlApp.cambiaPagina(null)">Indietro</button>
+    <div ng-if="ctrlApp.statoCorrente.name!='home'&&ctrlApp.statoCorrente.name!='login'"><!-- si può scrivere meglio-->
+      <button ng-click="ctrlApp.indietro()">Indietro</button>
     </div>
   </div>
-  <div class="contenutoPrincipale" ng-include="ctrlApp.templatePage">
-    questo testo verrà sostituito da ng-include
+  <!-- <div class="contenutoPrincipale" ng-include="ctrlApp.templatePage"> -->
+  <div class="contenutoPrincipale" ui-view>
+
+    questo testo verrà sostituito da ui-view
   </div>
 
 </body>
