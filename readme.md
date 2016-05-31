@@ -11,6 +11,16 @@ Vi ricordo che avete 2weekend dopo ogni lab per poter effettuare gli esercizi.
 2. Realizzare una pagina con cui un utente può registrarsi
 3. Quello che pensate possa essere utile
 
+
+### Lab2: Filtri & Routing
+
+1. L’utente loggato si iscrive ad un evento
+2. Vista edit evento a parte
+3. Visualizzazione utenti iscritti al sito come vista a parte
+4. Filtri di ricerca su utenti ed eventi
+5. Quello che pensate possa essere utile
+
+
 ##Tools
 Vi consiglio di usare Atom come editor con i seguenti plugins:
 
