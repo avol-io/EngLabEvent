@@ -87,6 +87,15 @@
       controllerAs: 'ctrl'
     });
 
+    $stateProvider.state('utentiRegistrati', {
+      name: 'utentiRegistrati',
+      url: '/utentiRegistrati',
+      //indietro: 'home',
+      templateUrl: 'views/utentiRegistrati/utentiRegistrati.view.html',
+      controller: 'utentiRegistrati',
+      controllerAs: 'ctrl'
+    });
+
   }
 
   /**************************************

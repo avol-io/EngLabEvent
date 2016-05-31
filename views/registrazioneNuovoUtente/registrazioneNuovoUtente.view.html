@@ -17,12 +17,16 @@
 			<label>Password:
 				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password" ></input>
 			</label>
+			<label>Esterno:
+				<input type="checkbox" ng-model="ctrl.utente.esterno" name="Esterno" value="true"></input>
+			</label>
 			<div class="operazioni">
 				<button class="salva" ng-click="ctrl.salva()" ng-if="creaUtenteForm.$valid"></button>
 			</div>
 		</fieldset>
 	</form>
-	<fieldset class="utentiCreati" ng-if="ctrl.utenti.length > 0">
+
+	<!--<fieldset class="utentiCreati" ng-if="ctrl.utenti.length > 0">
 		<table class="elencoUtenti">
 			<thead>
 				<tr>
@@ -43,5 +47,5 @@
 			</tbody>
 		</table>
 
-	</fieldset>
+	</fieldset-->
 </div>
