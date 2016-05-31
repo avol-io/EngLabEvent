@@ -3,6 +3,8 @@
 	<h1>Visualizzazione Eventi</h1> Numero eventi: {{ctrl.eventi.length || "0"}}
 	<fieldset class="elenco">
 		<legend>Elenco Eventi</legend>
+		<input ng-model="queryEventi" type="text"
+        placeholder="Filter by" autofocus>
 		<table class="elencoEventi acard">
 			<thead>
 				<tr class="title">
@@ -18,7 +20,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="evento in ctrl.eventi track by evento.id">
+				<tr ng-repeat="evento in ctrl.eventi  | orderBy: evento.id | filter: queryEventi">
 					<td>{{evento.nome}}</td>
 					<td>{{evento.data | date: 'dd/MM/yyyy'}}</td>
 					<td>{{evento.luogo}}</td>
@@ -45,6 +47,8 @@
 		<legend>
 			<b>Lista Partecipanti</b>
 		</legend>
+		<input ng-model="queryUtenti" type="text"
+        placeholder="Filter by" autofocus>
 		<table class="elencoEventi">
 			<thead>
 				<tr>
@@ -55,7 +59,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="utente in ctrl.evento.utenti track by utente.id">
+				<tr ng-repeat="utente in ctrl.evento.utenti  | orderBy: utente.id | filter: queryUtenti">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
@@ -75,6 +79,8 @@
 		<legend>
 			<b>Aggiungi utente</b>
 		</legend>
+		<input ng-model="queryUtentiEvento" type="text"
+        placeholder="Filter by" autofocus>
 		<table class="elencoEventi">
 			<thead>
 				<tr>
@@ -85,7 +91,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="utente in ctrl.utenti  track by utente.id ">
+				<tr ng-repeat="utente in ctrl.utenti | orderBy: utente.id | filter: queryUtentiEvento">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>

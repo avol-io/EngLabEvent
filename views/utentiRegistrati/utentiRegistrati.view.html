@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<div class="listaUtenti" >
+	<h1>Visualizzazione Utenti Registrati</h1> Numero utenti: {{ctrl.utenti.length || "0"}}
+	<fieldset class="elenco" ng-if="ctrl.utenti">
+		<legend>Elenco Utenti Registrati</legend>
+    <input ng-model="query" type="text"
+        placeholder="Filter by" autofocus>
+		<table class="elencoUtenti acard">
+			<thead>
+				<tr class="title">
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>E-mail</th>
+					<th>Esterno</th>
+					<th>Data Iscrizione</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="utente in ctrl.utenti | orderBy: utente.id | filter: query">
+					<td>{{utente.nome}}</td>
+					<td>{{utente.cognome}}</td>
+					<td>{{utente.email}}</td>
+					<td>{{utente.esterno===true?'si':'no'}}</td>
+					<td>{{utente.dataIscrizione | date: 'dd/MM/yyyy HH:mm'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+
+</div>

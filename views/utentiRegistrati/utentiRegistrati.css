@@ -1,0 +1,63 @@
+body.listaUtenti.rendimiBello {
+  padding-top: 100px;
+  background-position-y: -30px;
+  background-size: 550px;
+}
+
+.rendimiBello .contenutoPrincipale .listaUtenti .elencoUtenti button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .elimina {
+  background: transparent url("../../img/elimina.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .utentiPrenotati {
+  background: transparent url("../../img/utenti.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .add {
+  background: transparent url("../../img/add.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .aggiungi {
+  background: transparent url("../../img/aggiungi.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .ok {
+  background: transparent url("../../img/conferma.png") no-repeat;
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+	border:0px;
+}
+.rendimiBello .contenutoPrincipale .listaUtenti .visualizza {
+  background: transparent url("../../img/dettaglio.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
+
+.rendimiBello .contenutoPrincipale .listaUtenti .elencoUtenti .title {
+  font-style: normal;
+  font-weight: bold;
+}
+.rendimiBello .listaUtenti .opzioni li {}
+.rendimiBello .listaUtenti .opzioni label {
+  flex-flow: row nowrap;
+  display: flex;
+}
+.rendimiBello .listaUtenti .opzioni label input {
+  flex-grow: 2;
+}
+.rendimiBello .listaUtenti .opzioni label button {
+  flex-shrink: 1;
+  flex-grow: 1;
+  height: 2.6rem;
+}
