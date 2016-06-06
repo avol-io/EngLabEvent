@@ -14,8 +14,10 @@
 					<th>Min Partecipanti</th>
 					<th>Max Partecipanti</th>
 					<th>Dettagli</th>
-					<th>Elimina</th>
-					<th>Aggiungi</th>
+					<th>Iscriviti</th>
+					<th ng-if="ctrl.utenteLoggato.tipologia===1">Modifica</th>
+					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
+					<th ng-if="ctrl.utenteLoggato.tipologia===1">Aggiungi</th>
 					<th>Utenti Prenotati</th>
 				</tr>
 			</thead>
@@ -30,9 +32,15 @@
 						<button class="visualizza" ng-click="ctrl.visualizzaEvento(evento)"></button>
 					</td>
 					<td>
+						<button class="aggiungi" ng-click="ctrl.iscriviti(evento)"></button>
+					</td>
+					<td ng-if="ctrl.utenteLoggato.tipologia===1">
+						<button class="modifica" ng-click="ctrl.modificaEvento(evento)"></button>
+					</td>
+					<td ng-if="ctrl.utenteLoggato.tipologia===1">
 						<button class="elimina" ng-click="ctrl.eliminaEvento(evento)"></button>
 					</td>
-					<td>
+					<td ng-if="ctrl.utenteLoggato.tipologia===1">
 						<button class="aggiungi" ng-click="ctrl.mostraUtenti(evento)"></button>
 					</td>
 					<td>
@@ -52,18 +60,20 @@
 		<table class="elencoEventi">
 			<thead>
 				<tr>
+					<th>Num.</th>
 					<th>Nome</th>
 					<th>Cognome</th>
 					<th>Email</th>
-					<th>Elimina</th>
+					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="utente in ctrl.evento.utenti  | orderBy: utente.id | filter: queryUtenti">
+					<td>{{$index+1}}</td>
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td>
+					<td ng-if="ctrl.utenteLoggato.tipologia===1">
 						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>

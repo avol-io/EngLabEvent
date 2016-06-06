@@ -28,6 +28,8 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		//lista utenti
 		ctrl.utenti=$localStorage.utenti;
 
+		ctrl.utenteLoggato = $localStorage.utenteLoggato;
+
 		ctrl.evento=null;
 
 
@@ -35,7 +37,6 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
     Variabili di flusso
 		 */
 		ctrl.visualizzaDettagli=false;
-		ctrl.modificaEvento=false;
 		ctrl.visualizzaUtenti=false;
 		ctrl.visualizzaLista=false;
 		ctrl.visualizzaVincoli = false;
@@ -57,6 +58,10 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.rimuoviOpzione = rimuoviOpzione;
 		//cambia la visualizzazione dei vincoli
 		ctrl.alCambiamentoDelVincoloSuIPartecipanti = alCambiamentoDelVincoloSuIPartecipanti;
+		//iscrive un utente ad un evento
+		ctrl.iscriviti = iscriviti;
+		//modifica di un evento - solo per amministratori
+		ctrl.modificaEvento = modificaEvento;
 
 		/**
 		 * Aggiunge un'opzione
@@ -161,6 +166,29 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 
 		function eliminaEvento(evento){
 			ctrl.eventi.splice(evento, 1);
+		}
+
+		/*
+		Iscrive l'utente attualmente loggato ad un evento
+		 */
+		function iscriviti(evento){
+			ctrl.evento = evento;
+			if(!ctrl.evento.utenti){
+				ctrl.evento.utenti=[];
+			}
+
+			for(var i=0; i<ctrl.evento.utenti.length; i++){
+				if(ctrl.utenteLoggato.email === ctrl.evento.utenti[i].email){
+					alert('Sei già iscritto a questo evento!');
+					return;
+				}
+			};
+
+			ctrl.evento.utenti.push(ctrl.utenteLoggato);
+		}
+
+		function modificaEvento(evento){
+			$state.go('modificaEvento',{id:evento.id});
 		}
 
 	}

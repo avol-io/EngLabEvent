@@ -25,10 +25,10 @@ vincoliPartecipanti:{
 	.module('engLabEvents')
 	.controller('creaEvento', creaEvento);
 
-	creaEvento.$inject = ['$localStorage','$state'];
+	creaEvento.$inject = ['$localStorage','$state','$stateParams'];
 
 	/* @ngInject */
-	function creaEvento($localStorage,$state) {
+	function creaEvento($localStorage,$state,$stateParams) {
 		var ctrl = this;
 
 
@@ -57,6 +57,8 @@ vincoliPartecipanti:{
 		ctrl.visualizzaOpzioni = false;
 		//visualizza vincoli su i partecipanti
 		ctrl.visualizzaVincoli = false;
+		//operazione in corso - inserimento o modifica
+		ctrl.operazione='inserimentoEvento';
 
 
 		/*
@@ -74,6 +76,8 @@ vincoliPartecipanti:{
 		ctrl.cambiaVisualizzazioneOpzioni = cambiaVisualizzazioneOpzioni;
 		//cambia la visualizzazione dei vincoli
 		ctrl.alCambiamentoDelVincoloSuIPartecipanti = alCambiamentoDelVincoloSuIPartecipanti;
+		//salva l'evento
+		ctrl.modifica = modifica;
 
 		/**
 		 * Si occupa di gestire il salvataggio di un evento
@@ -81,6 +85,7 @@ vincoliPartecipanti:{
 		 */
 		function salva() {
 			ctrl.evento.id = Math.ceil(Math.random() * 100);
+			ctrl.evento.data = new Date(ctrl.evento.data);
 			ctrl.eventi.push(ctrl.evento);
 			alert('Evento Salvato');
 
@@ -138,14 +143,54 @@ vincoliPartecipanti:{
 			ctrl.evento.vincoliPartecipanti.max=null;
 		}
 
+		/**
+		 * Si occupa di gestire la modifica di un evento
+		 * @return void
+		 */
+		function modifica() {
+			ctrl.eventi.forEach(function(evento) {
+
+				if (evento.id == ctrl.evento.id) {
+					copyEvento(evento,ctrl.evento);
+				}
+			});
+			alert('Evento modificato!');
+		}
+
 
 		function init(){
 			if (!$localStorage.eventi) {
 				$localStorage.eventi = [];
 			}
 			ctrl.eventi=$localStorage.eventi;
+
+			ctrl.eventi.forEach(function(evento) {
+
+				if (evento.id == $stateParams.id) {
+					ctrl.operazione='modificaEvento';
+					copyEvento(ctrl.evento, evento);
+					ctrl.evento.data = new Date(ctrl.evento.data);
+					console.log(ctrl.evento);
+					if(ctrl.evento.opzioni && ctrl.evento.opzioni.length>0){
+						ctrl.visualizzaOpzioni = true;
+					}
+					if(ctrl.evento.vincoliPartecipanti.min && ctrl.evento.vincoliPartecipanti.max){
+						ctrl.visualizzaVincoli = true;
+					}
+				}
+			});
 		}
 		init();
+
+		function copyEvento(eventoA, eventoB){
+			eventoA.id = eventoB.id;
+			eventoA.nome = eventoB.nome;
+			eventoA.data = eventoB.data;
+			eventoA.luogo = eventoB.luogo;
+			eventoA.opzioni = JSON.parse(JSON.stringify(eventoB.opzioni));
+			eventoA.vincoliPartecipanti = {min:eventoB.vincoliPartecipanti.min, max:eventoB.vincoliPartecipanti.max};
+			;
+		}
 
 	}
 })();

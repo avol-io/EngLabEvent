@@ -40,7 +40,7 @@
 					<th>Nome</th>
 					<th>Cognome</th>
 					<th>Email</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
+					<th>Elimina</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,7 +48,7 @@
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
+					<td>
 						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>
