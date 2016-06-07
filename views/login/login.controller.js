@@ -67,14 +67,11 @@ Questo controller si occuperà di gestire tutta la logica di login di un utente
 
 
 
-
-
-
 		function init(){
 			if (!$localStorage.utenti) {
 				$localStorage.utenti = [];
 			}
-				ctrl.utenti = $localStorage.utenti;
+			ctrl.utenti = $localStorage.utenti;
 		}
 		init();
 

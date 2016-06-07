@@ -12,7 +12,6 @@
 					<th>Luogo</th>
 					<th>Min Partecipanti</th>
 					<th>Max Partecipanti</th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -41,7 +40,7 @@
 					<th>Nome</th>
 					<th>Cognome</th>
 					<th>Email</th>
-					<th>Elimina</th>
+					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,7 +48,7 @@
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td>
+					<td ng-if="ctrl.utenteLoggato.tipologia===1">
 						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>

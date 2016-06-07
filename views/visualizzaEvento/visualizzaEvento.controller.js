@@ -24,6 +24,8 @@ VISUALIZZA EVENTO
     //l'evento
     ctrl.evento = {};
 
+    ctrl.utenteLoggato = $localStorage.utenteLoggato;
+
 
     /*
     Variabili di flusso

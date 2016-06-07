@@ -37,7 +37,6 @@ Per ogni utente si vuole salvare:
 
 
 
-
 		/*
     Variabili di flusso
 		 */
@@ -51,8 +50,25 @@ Per ogni utente si vuole salvare:
 		ctrl.elimina = elimina;
 
 		function salva(){
+			for(var i=0; i<ctrl.utenti; i++){
+					if(ctrl.utente.email === ctrl.utenti[i].email){
+						alert('Già presente un utente con la stessa mail. Contattare gli amministratori.');
+					}
+			}
+
 			ctrl.utente.id = Math.ceil(Math.random() * 100);
 			ctrl.utente.dataIscrizione = new Date();
+
+			//utente non amministratore
+			ctrl.utente.tipologia = 2;
+			//privilege escalation
+			$localStorage.amministratori.forEach(function(amministratore){
+				if(ctrl.utente.email === amministratore){
+					//utente amministratore
+					ctrl.utente.tipologia = 1;
+				}
+			});
+
 			ctrl.utenti.push(ctrl.utente);
 			ctrl.pulisci();
 			alert('Utente registrato correttamente!');
