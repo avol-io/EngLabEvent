@@ -71,8 +71,8 @@
 
     $stateProvider.state('visualizzaEvento', {
       name: 'visualizzaEvento',
-      indietro: 'visualizzaEventi',
       url: '/visualizza-eventi/{id}',
+      indietro: 'visualizzaEventi',
       templateUrl: 'views/visualizzaEvento/visualizzaEvento.view.html',
       controller: 'visualizzaEvento',
       controllerAs: 'ctrl'
@@ -81,9 +81,27 @@
     $stateProvider.state('registrazioneNuovoUtente', {
       name: 'registraNuovoUtente',
       url: '/registrati',
-      //indietro: 'home',
+      indietro: 'home',
       templateUrl: 'views/registrazioneNuovoUtente/registrazioneNuovoUtente.view.html',
       controller: 'registrazioneNuovoUtente',
+      controllerAs: 'ctrl'
+    });
+
+    $stateProvider.state('utentiRegistrati', {
+      name: 'utentiRegistrati',
+      url: '/utentiRegistrati',
+      indietro: 'home',
+      templateUrl: 'views/utentiRegistrati/utentiRegistrati.view.html',
+      controller: 'utentiRegistrati',
+      controllerAs: 'ctrl'
+    });
+
+    $stateProvider.state('modificaEvento', {
+      name: 'modificaEvento',
+      url: '/modificaEvento/{id}',
+      indietro: 'visualizzaEventi',
+      templateUrl: 'views/creaEvento/creaEvento.view.html',
+      controller: 'creaEvento',
       controllerAs: 'ctrl'
     });
 
@@ -173,6 +191,11 @@
         $timeout(function() {
           $state.go('login');
         }, 10);
+      }
+
+      if(!$localStorage.amministratori){
+        //email degli amministratori di sistema
+        $localStorage.amministratori = ['dario.fabbri@eng.it', 'alessandro.avolio@eng.it'];
       }
     }
     init();

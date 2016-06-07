@@ -15,6 +15,11 @@ body.visualizzazioneEventi.rendimiBello {
   background-size: 30px 30px;
 	border:0px;
 }
+.rendimiBello .contenutoPrincipale .visualizzazioneEventi .modifica {
+  background: transparent url("../../img/edit.png") no-repeat;
+  background-size: 30px 30px;
+	border:0px;
+}
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .utentiPrenotati {
   background: transparent url("../../img/utenti.png") no-repeat;
   background-size: 30px 30px;

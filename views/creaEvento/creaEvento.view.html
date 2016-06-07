@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <div class="creaEvento" >
-  <h1>Creazione Evento</h1>
-  <h2>Da questa pagina è possibile  creare un nuovo evento</h2>
+  <h1 ng-if="ctrl.operazione === 'inserimentoEvento'">Creazione Evento</h1>
+  <h1 ng-if="ctrl.operazione === 'modificaEvento'">Modifica Evento</h1>
+  <h2 ng-if="ctrl.operazione === 'inserimentoEvento'">Da questa pagina è possibile  creare un nuovo evento</h2>
+  <h2 ng-if="ctrl.operazione === 'modificaEvento'">Da questa pagina è possibile modificare l'evento</h2>
   <form novalidate name="creaEventoForm">
     <fieldset class="informazioniGenerali">
       <legend>Informazioni Principali Evento</legend>
@@ -52,7 +54,8 @@
     <div class="operazioni">
         <button ng-click="ctrl.cambiaVisualizzazioneOpzioni()" ng-if="ctrl.visualizzaOpzioni&&ctrl.evento.opzioni.length===0">Nascondi Opzioni</button>
       <button ng-click="ctrl.cambiaVisualizzazioneOpzioni()" ng-if="!ctrl.visualizzaOpzioni">Visualizza Opzioni</button>
-      <button ng-click="ctrl.salva()" ng-if="creaEventoForm.$valid">Salva Evento</button>
+      <button ng-click="ctrl.salva()" ng-if="ctrl.operazione === 'inserimentoEvento' && creaEventoForm.$valid">Salva Evento</button>
+      <button ng-click="ctrl.modifica()" ng-if="ctrl.operazione === 'modificaEvento' && creaEventoForm.$valid">Modifica Evento</button>
     </div>
     <div class="areaInformazioni">
        <div ng-show="creaEventoForm.$dirty">Form modificata</div>
