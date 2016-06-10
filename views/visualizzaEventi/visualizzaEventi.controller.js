@@ -13,13 +13,47 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 	.module('engLabEvents')
 	.controller('visualizzaEventi', visualizzaEventi);
 
+	angular
+	.module('engLabEvents').filter('noDuplicati', function(){
+		return function(array, presenti){
+			if(!presenti){
+				return array;
+			}
+			var result = [];
+			array.forEach(function(utente){
+				var trovato=false;
+				presenti.forEach(function(item){
+					if(item.id === utente.id){
+						trovato=true;
+					}
+				});
+				if(!trovato){
+					result.push(utente);
+				}
+			});
+			return result;
+		};
+	});
+	angular
+	.module('engLabEvents').filter('contains', function(){
+		return function(creati, evento){
+			if(!creati){
+				return false;
+			}
+			var owner = false;
+			creati.forEach(function(e){
+				if(e.id===evento.id){
+					owner = true;
+				}
+			});
+			return owner;
+		};
+	});
 	visualizzaEventi.$inject = ['$localStorage','$state'];
 
 	/* @ngInject */
 	function visualizzaEventi($localStorage,$state) {
 		var ctrl = this;
-
-
 		/*
       ATTRIBUTI
 		 */
@@ -29,7 +63,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.utenti=$localStorage.utenti;
 
 		ctrl.evento=null;
-
+		ctrl.utenteLoggato = $localStorage.utenteLoggato;
 
 		/*
     Variabili di flusso
@@ -39,6 +73,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.visualizzaUtenti=false;
 		ctrl.visualizzaLista=false;
 		ctrl.visualizzaVincoli = false;
+		ctrl.nonPartecipante=true;
 
 
 		/*
@@ -49,6 +84,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 		ctrl.eliminaEvento=eliminaEvento;
 		ctrl.mostraUtenti=mostraUtenti;
 		ctrl.aggiungiPartecipante=aggiungiPartecipante;
+		ctrl.aggiungiPartecipanteSingolo=aggiungiPartecipanteSingolo;
 		ctrl.eliminaPartecipante=eliminaPartecipante;
 		ctrl.visualizzaPartecipanti=visualizzaPartecipanti;
 		//aggiungi opzione
@@ -132,9 +168,18 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
 				ctrl.visualizzaUtenti=false;
 			}
 		}
+		function aggiungiPartecipanteSingolo(evento){
+			var utente = $localStorage.utenteLoggato;
+			ctrl.evento = evento;
+			if(!ctrl.evento.utenti){
+				ctrl.evento.utenti=[];
+			}
+			ctrl.evento.utenti.push(utente);
+			ctrl.nonPartecipante=false;
+		}
 
 		function eliminaPartecipante(utente){
-			ctrl.evento.utenti.splice(utente, 1);
+			ctrl.evento.utenti.splice(ctrl.evento.utenti.indexOf(utente), 1);
 			if(ctrl.evento.utenti.length == 0){
 				ctrl.visualizzaLista=false;
 			}

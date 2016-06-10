@@ -3,7 +3,7 @@
 	<h1>Visualizzazione Eventi</h1> Numero eventi: {{ctrl.eventi.length || "0"}}
 	<fieldset class="elenco">
 		<legend>Elenco Eventi</legend>
-		<input ng-model="queryEventi" type="text"
+		<input ng-model="queryEventi.nome" type="text"
         placeholder="Filter by" autofocus>
 		<table class="elencoEventi acard">
 			<thead>
@@ -30,10 +30,11 @@
 						<button class="visualizza" ng-click="ctrl.visualizzaEvento(evento)"></button>
 					</td>
 					<td>
-						<button class="elimina" ng-click="ctrl.eliminaEvento(evento)"></button>
+						<button ng-if="(ctrl.utenteLoggato.eventiCreati | contains: evento)" class="elimina" ng-click="ctrl.eliminaEvento(evento)"></button>
 					</td>
 					<td>
-						<button class="aggiungi" ng-click="ctrl.mostraUtenti(evento)"></button>
+						<button class="aggiungi" ng-if="(ctrl.utenteLoggato.eventiCreati | contains: evento)" ng-click="ctrl.mostraUtenti(evento)"></button>
+						<button class="add" ng-if="!(ctrl.utenteLoggato.eventiCreati | contains: evento) && !(evento.utenti | contains : ctrl.utenteLoggato) && (!ctrl.evento.vincoliPartecipanti.max || !ctrl.evento.utenti || (ctrl.evento.utenti.length < ctrl.evento.vincoliPartecipanti.max))" ng-click="ctrl.aggiungiPartecipanteSingolo(evento) "></button>
 					</td>
 					<td>
 						<button ng-if="evento.utenti.length>0" class="utentiPrenotati" ng-click="ctrl.visualizzaPartecipanti(evento)"></button>
@@ -47,7 +48,7 @@
 		<legend>
 			<b>Lista Partecipanti</b>
 		</legend>
-		<input ng-model="queryUtenti" type="text"
+		<input ng-model="queryUtenti.nome" type="text"
         placeholder="Filter by" autofocus>
 		<table class="elencoEventi">
 			<thead>
@@ -63,7 +64,7 @@
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td>
+					<td ng-if="(ctrl.utenteLoggato.eventiCreati | contains: ctrl.evento) || utente.id == ctrl.utenteLoggato.id">
 						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>
@@ -79,7 +80,7 @@
 		<legend>
 			<b>Aggiungi utente</b>
 		</legend>
-		<input ng-model="queryUtentiEvento" type="text"
+		<input ng-model="queryUtentiEvento.nome" type="text"
         placeholder="Filter by" autofocus>
 		<table class="elencoEventi">
 			<thead>
@@ -91,7 +92,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="utente in ctrl.utenti | orderBy: utente.id | filter: queryUtentiEvento">
+				<tr ng-repeat="utente in ctrl.utenti | noDuplicati : ctrl.evento.utenti |filter: queryUtentiEvento track by utente.id">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
