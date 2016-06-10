@@ -53,6 +53,7 @@ Per ogni utente si vuole salvare:
 		function salva(){
 			ctrl.utente.id = Math.ceil(Math.random() * 100);
 			ctrl.utente.dataIscrizione = new Date();
+			ctrl.utente.eventiCreati = [];
 			ctrl.utenti.push(ctrl.utente);
 			ctrl.pulisci();
 			alert('Utente registrato correttamente!');

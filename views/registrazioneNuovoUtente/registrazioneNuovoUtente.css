@@ -5,8 +5,10 @@
 }*/
 
 .rendimiBello .contenutoPrincipale .registrazioneNuovoUtente .operazioni .salva {
-	background: transparent url("../../img/conferma.png") no-repeat ;
-	background-size: 30px 30px;
+  
+  flex-shrink: 1;
+  flex-grow: 1;
+  height: 2.6rem;
 
 }
 

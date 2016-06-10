@@ -35,7 +35,7 @@ vincoliPartecipanti:{
 		/*
       ATTRIBUTI
 		 */
-
+		ctrl.creatore = $localStorage.utenteLoggato;
 
 		//l'evento che si vuole creare
 		ctrl.evento = {
@@ -82,6 +82,7 @@ vincoliPartecipanti:{
 		function salva() {
 			ctrl.evento.id = Math.ceil(Math.random() * 100);
 			ctrl.eventi.push(ctrl.evento);
+			ctrl.creatore.eventiCreati.push(ctrl.evento);
 			alert('Evento Salvato');
 
 			console.log({id:ctrl.evento.id});
