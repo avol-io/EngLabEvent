@@ -53,6 +53,7 @@ Per ogni utente si vuole salvare:
       for (var i = 0; i < ctrl.utenti; i++) {
         if (ctrl.utente.email === ctrl.utenti[i].email) {
           alert('Già presente un utente con la stessa mail. Contattare gli amministratori.');
+          return;
         }
       }
 
@@ -61,6 +62,7 @@ Per ogni utente si vuole salvare:
 
 
       ctrl.utenti.push(ctrl.utente);
+        alert('Utente registrato correttamente');
       ctrl.pulisci();
     }
 
