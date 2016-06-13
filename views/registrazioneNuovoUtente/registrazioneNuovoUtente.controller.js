@@ -71,7 +71,6 @@ Per ogni utente si vuole salvare:
 
 			ctrl.utenti.push(ctrl.utente);
 			ctrl.pulisci();
-			alert('Utente registrato correttamente!');
 		}
 
 		function pulisci() {
