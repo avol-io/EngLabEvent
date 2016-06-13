@@ -22,7 +22,7 @@
 			</div>
 		</fieldset>
 	</form>
-	<fieldset class="utentiCreati" ng-if="ctrl.utenti.length > 0">
+	<fieldset class="utentiCreati" ng-if="ctrl.utenti.length > 0&&ctrl.visualizzaUtenti">
 		<table class="elencoUtenti">
 			<thead>
 				<tr>
@@ -38,7 +38,7 @@
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
 					<td>
-						<button class="elimina" ng-click="ctrl.elimina(utente)"></button>
+						<button ng-if="ctrl.visualizaElimina" class="elimina" ng-click="ctrl.elimina(utente)"></button>
 					</td>
 			</tbody>
 		</table>
