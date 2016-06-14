@@ -11,10 +11,10 @@ Il modello che rappresenta un'evento ha questo struttura
     .module('engLabEvents')
     .controller('creaEvento', creaEvento);
 
-  creaEvento.$inject = ['$localStorage', '$state', '$stateParams'];
+  creaEvento.$inject = ['$localStorage', '$state', '$stateParams','$scope'];
 
   /* @ngInject */
-  function creaEvento($localStorage, $state, $stateParams) {
+  function creaEvento($localStorage, $state, $stateParams,$scope) {
     var ctrl = this;
 
 
@@ -73,7 +73,7 @@ Il modello che rappresenta un'evento ha questo struttura
     function salva() {
       ctrl.evento.id = Math.ceil(Math.random() * 100);
       //ctrl.evento.data = ctrl.evento.data;
-      if (ctrl.evento.autore) {
+      if (!ctrl.evento.autore) {
         //se l'autore non è settato (cioè se non si tratta di una modifica)
         ctrl.evento.autore = $localStorage.utenteLoggato; //aggiungo l'autore basandomi sull'utente loggato
       }
@@ -99,6 +99,8 @@ Il modello che rappresenta un'evento ha questo struttura
       ctrl.evento.opzioni = [];
       ctrl.visualizzaOpzioni = false;
       ctrl.visualizzaVincoli = false;
+      $scope.creaEventoForm.$setPristine();
+
     }
 
     /**
@@ -157,7 +159,11 @@ Il modello che rappresenta un'evento ha questo struttura
         }
       });
       if (trovato) {
+        $state.go('visualizzaEvento', {
+          id: ctrl.evento.id
+        });
         alert('Evento modificato!');
+
       } else {
         creaEvento();
       }
@@ -182,10 +188,13 @@ Il modello che rappresenta un'evento ha questo struttura
       ctrl.eventi = $localStorage.eventi;
 
       if ($state.is('modificaEvento')) {
+
         ctrl.eventi.forEach(function(evento) {
           if (evento.id == $stateParams.id) {
             ctrl.operazione = 'modificaEvento';
             copyEvento(evento, ctrl.evento);
+
+            ctrl.evento.data=new Date(ctrl.evento.data);
             if (ctrl.evento.opzioni && ctrl.evento.opzioni.length > 0) {
               ctrl.visualizzaOpzioni = true;
             }

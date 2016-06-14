@@ -42,7 +42,7 @@
 					<th>Nome</th>
 					<th>Cognome</th>
 					<th>Email</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
+					<th>Operazioni</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,8 +50,8 @@
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
+					<td >
+						<button class="elimina"  ng-if="ctrl.possoCancellarmi(utente)" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>
 				<tr>
@@ -61,7 +61,7 @@
 
 	</fieldset>
 	<div class="operazioni">
-		<button ng-click="ctrl.eliminaEvento()">Elimina Evento</button>
+		<button ng-if="ctrl.possoModificare()" ng-click="ctrl.eliminaEvento()">Elimina Evento</button>
 
 	</div>
 </div>

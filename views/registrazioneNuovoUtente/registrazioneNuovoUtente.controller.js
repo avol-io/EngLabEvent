@@ -39,7 +39,6 @@ Per ogni utente si vuole salvare:
     /*
     Variabili di flusso
 		 */
-    ctrl.visualizaElimina = false;
     ctrl.visualizzaUtenti = false;
 
     /*
@@ -47,7 +46,7 @@ Per ogni utente si vuole salvare:
 		 */
     ctrl.salva = salva;
     ctrl.pulisci = pulisci;
-    ctrl.elimina = elimina;
+  ctrl.visualizzaUtenti = false;
 
     function salva() {
       for (var i = 0; i < ctrl.utenti; i++) {
@@ -62,34 +61,30 @@ Per ogni utente si vuole salvare:
 
 
       ctrl.utenti.push(ctrl.utente);
-        alert('Utente registrato correttamente');
-      ctrl.pulisci();
+      alert('Utente registrato correttamente');
+      pulisci();
     }
 
     function pulisci() {
       ctrl.utente = {};
+      $scope.registrazioneNuovoUtenteForm.$setPristine();
     }
 
-    function elimina(utente) {
-      if ($localStorage.utenteLoggato.ruolo != 'admin') {
-        alert('Non sei autorizzato a effettuare questa operazione');
-        return;
-      }
-      ctrl.utenti.splice(utente, 1);
-    }
+
 
 
     function init() {
+      console.log('Sto in ctrl init');
       if (!$localStorage.utenti) {
         $localStorage.utenti = [];
       }
-      ctrl.utenti = $localStorage.utenti;
       if ($localStorage.utenteLoggato) {
         ctrl.visualizzaUtenti = true;
         if ($localStorage.utenteLoggato && $localStorage.utenteLoggato.ruolo === 'admin') {
           ctrl.visualizaElimina = true;
         }
       }
+      ctrl.utenti = $localStorage.utenti;
     }
     init();
 

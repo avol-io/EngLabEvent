@@ -11,12 +11,8 @@
 					<th>Luogo</th>
 					<th>Min Partecipanti</th>
 					<th>Max Partecipanti</th>
-					<th>Dettagli</th>
-					<th>Iscriviti</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Modifica</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Aggiungi</th>
-					<th>Utenti Prenotati</th>
+					<th>Dettaglio</th>
+					<th>Operazioni</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,130 +27,21 @@
 					</td>
 					<td>
 						<button class="aggiungi" ng-click="ctrl.iscriviti(evento)"></button>
+
+						<button class="modifica" ng-if="ctrl.possoModificare(evento)" ng-click="ctrl.modificaEvento(evento)"></button>
+
+						<button class="elimina" ng-if="ctrl.possoModificare(evento)" ng-click="ctrl.eliminaEvento(evento)"></button>
+
 					</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="modifica" ng-click="ctrl.modificaEvento(evento)"></button>
-					</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="elimina" ng-click="ctrl.eliminaEvento(evento)"></button>
-					</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="aggiungi" ng-click="ctrl.mostraUtenti(evento)"></button>
-					</td>
-					<td>
-						<button ng-if="evento.utenti.length>0" class="utentiPrenotati" ng-click="ctrl.visualizzaPartecipanti(evento)"></button>
-						{{evento.utenti.length || "0"}}
-					</td>
+
 				</tr>
 			</tbody>
 		</table>
 	</fieldset>
-	<fieldset ng-if="ctrl.visualizzaLista">
-		<legend>
-			<b>Lista Partecipanti</b>
-		</legend>
-		<table class="elencoEventi">
-			<thead>
-				<tr>
-					<th>Num.</th>
-					<th>Nome</th>
-					<th>Cognome</th>
-					<th>Email</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="utente in ctrl.evento.utenti  | orderBy: utente.id | filter: queryUtenti">
-					<td>{{$index+1}}</td>
-					<td>{{utente.nome}}</td>
-					<td>{{utente.cognome}}</td>
-					<td>{{utente.email}}</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
-					</td>
-				</tr>
-				<tr>
-				</tr>
-			</tbody>
-		</table>
-
-	</fieldset>
+	
 
 
-	<fieldset ng-if="ctrl.visualizzaUtenti">
-		<legend>
-			<b>Aggiungi utente</b>
-		</legend>
-		<table class="elencoEventi">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Cognome</th>
-					<th>Email</th>
-					<th>Aggiungi</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="utente in ctrl.utenti  track by utente.id ">
-					<td>{{utente.nome}}</td>
-					<td>{{utente.cognome}}</td>
-					<td>{{utente.email}}</td>
-					<td ng-if="!ctrl.evento.vincoliPartecipanti.max || !ctrl.evento.utenti || (ctrl.evento.utenti.length < ctrl.evento.vincoliPartecipanti.max)">
-						<button class="add" ng-click="ctrl.aggiungiPartecipante(utente)"></button>
-					</td>
-					<td ng-if="ctrl.evento.vincoliPartecipanti.max && ctrl.evento.utenti && (ctrl.evento.utenti.length >= ctrl.evento.vincoliPartecipanti.max)"><b>Massimo Numero raggiunto</b></td>
-				</tr>
-			</tbody>
-		</table>
-
-	</fieldset>
-
-	<fieldset ng-if="ctrl.visualizzaDettagli">
-		<fieldset class="informazioniGenerali">
-			<legend>Informazioni Principali Evento</legend>
-			<label>Nome Evento:
-				<input type="text" ng-model="ctrl.evento.nome" name="Nome Evento" placeholder="Nome evento"></input>
-			</label>
-			<label>Data Evento:
-				<input type="date" ng-model="ctrl.evento.data" name="Data Evento" placeholder="Data evento"></input>
-			</label>
-			<label>Luogo Evento:
-				<input type="text" ng-model="ctrl.evento.luogo" name="Luogo Evento" placeholder="Luogo evento"></input>
-			</label>
-
-		</fieldset>
 
 
-		<fieldset class="opzioni" ng-if="ctrl.evento.opzioni.length>0">
-			<legend>Gestione Opzioni</legend>
-			<ul>
-				<li ng-repeat="opzione in ctrl.evento.opzioni track by opzione.nome">
-					<label>
-						<input type="text" ng-model="opzione.nome" name="Nome Opzione" placeholder="Inserisci nome opzione"></input>
-						<button ng-click="ctrl.rimuoviOpzione(opzione)">x</button>
-					</label>
-				</li>
-			</ul>
-			<div class="operazioni">
-				<button ng-click="ctrl.aggiungiOpzione()">Aggiungi Opzione</button>
 
-			</div>
-
-		</fieldset>
-
-		<fieldset class="opzioni">
-			<legend>Vincoli sui partecipanti</legend>
-			<label>Vincoli su numero partecipanti:
-				<input type="checkbox" ng-checked="ctrl.visualizzaVincoli" ng-model="ctrl.visualizzaVincoli" name="Vincoli su partecipanti" ng-change="ctrl.alCambiamentoDelVincoloSuIPartecipanti()"></input>
-			</label>
-			<label ng-if="ctrl.visualizzaVincoli">Minimo numero partecipanti:
-				<input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.min" name="Minimo numero partecipanti"></input>
-			</label>
-			<label ng-if="ctrl.visualizzaVincoli">Massimo numero partecipanti:
-				<input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.max" name="Minimo numero partecipanti"></input>
-			</label>
-
-		</fieldset>
-
-	</fieldset>
 </div>

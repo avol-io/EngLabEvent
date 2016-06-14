@@ -102,6 +102,15 @@ body.rendimiBello {
   vertical-align: middle;
 }
 
+.rendimiBello input.ng-dirty.ng-invalid,.rendimiBello input.ng-pristine.ng-invalid-required{
+  border: 2px solid red;
+  /*background: rgba(255, 0, 0, 0.5);*/
+}
+.rendimiBello input:disabled,.rendimiBello button:disabled  {
+  opacity: 0.25;
+
+}
+
 /*by dario2016*/
 
 .rendimiBello table {

@@ -43,10 +43,10 @@
         <input type="checkbox" ng-model="ctrl.visualizzaVincoli" name="Vincoli su partecipanti" ng-change="ctrl.alCambiamentoDelVincoloSuIPartecipanti()"/>
       </label>
       <label ng-if="ctrl.visualizzaVincoli">Minimo numero partecipanti
-        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.min" name="Minimo numero partecipanti" ></input>
+        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.min" name="Minimo numero partecipanti"/>
       </label>
       <label ng-if="ctrl.visualizzaVincoli">Massimo numero partecipanti:
-        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.max" name="Minimo numero partecipanti" ></input>
+        <input type="number" max="999" min="1" ng-model="ctrl.evento.vincoliPartecipanti.max" name="Minimo numero partecipanti"/>
       </label>
 
     </fieldset>

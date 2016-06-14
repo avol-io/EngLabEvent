@@ -92,7 +92,7 @@
       url: '/utentiRegistrati',
       indietro: 'home',
       templateUrl: 'views/utentiRegistrati/utentiRegistrati.view.html',
-      controller: 'registrazioneNuovoUtente',
+      controller: 'utentiRegistrati',
       controllerAs: 'ctrl'
     });
 
