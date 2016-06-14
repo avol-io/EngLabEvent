@@ -17,10 +17,10 @@ Per ogni utente si vuole salvare:
     .module('engLabEvents')
     .controller('registrazioneNuovoUtente', registrazioneNuovoUtente);
 
-  registrazioneNuovoUtente.$inject = ['$localStorage'];
+  registrazioneNuovoUtente.$inject = ['$localStorage','$scope'];
 
   /* @ngInject */
-  function registrazioneNuovoUtente($localStorage) {
+  function registrazioneNuovoUtente($localStorage,$scope) {
     var ctrl = this;
     /*
     	ATTRIBUTI
@@ -49,7 +49,7 @@ Per ogni utente si vuole salvare:
   ctrl.visualizzaUtenti = false;
 
     function salva() {
-      for (var i = 0; i < ctrl.utenti; i++) {
+      for (var i = 0; i < ctrl.utenti.length; i++) {
         if (ctrl.utente.email === ctrl.utenti[i].email) {
           alert('Già presente un utente con la stessa mail. Contattare gli amministratori.');
           return;
@@ -68,6 +68,7 @@ Per ogni utente si vuole salvare:
     function pulisci() {
       ctrl.utente = {};
       $scope.registrazioneNuovoUtenteForm.$setPristine();
+      $scope.registrazioneNuovoUtenteForm.$setValidity();
     }
 
 
