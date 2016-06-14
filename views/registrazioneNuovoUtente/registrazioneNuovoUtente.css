@@ -5,3 +5,12 @@
   height: 30px;
 	border:0px;
 }
+.rendimiBello .registrazioneNuovoUtente .emoticon img{
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+}
+
+.rendimiBello .registrazioneNuovoUtente .emoticon.selezionato img{
+    border: 2px solid black;
+  }
