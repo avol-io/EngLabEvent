@@ -1,9 +1,6 @@
-
 /*
 Crea Evento
  */
-
-
 .rendimiBello .creaEvento .opzioni li {}
 .rendimiBello .creaEvento .opzioni label {
   flex-flow: row nowrap;
