@@ -17,6 +17,9 @@
 			<label>Password:
 				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password" />
 			</label>
+			<label>Bio:
+				<textarea ng-model="ctrl.utente.bio" required="true" name="bio" placeholder="Insescici una tua biografia"></textarea>
+			</label>
 			<label>Scegli emoticons:
 				<span class="emoticon" ng-repeat="emo in ctrl.emoticons" ng-class="{'selezionato':ctrl.utente.emoticon===emo}">
 			<img   ng-click="ctrl.cambiaEmoticon(emo)" ng-src="{{emo}}"/></span>

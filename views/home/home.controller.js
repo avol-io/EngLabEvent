@@ -9,6 +9,6 @@
 
     /* @ngInject */
     function homeController() {
-
+    
     }
 })();

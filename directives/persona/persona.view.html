@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<div class="persona" ng-class="ctrl.modalita" >
+<div class="persona" ng-class="ctrl.modalita" ng-click="ctrl.cambiaModalita()"  >
   <div class="avatar"> <img ng-src="{{ctrl.persona.emoticon}}" /></div>
   <div class="dettaglio">
-    <div class="nome">{{ctrl.persona.nome}}{{ctrl.persona.cognome}}</div>
-    <div class="dettaglio-espanso" >{{ctrl.persona.email}}</div>
+    <div class="nome">{{ctrl.persona.nome}} {{ctrl.persona.cognome}}</div>
+    <div class="dettaglio-espanso" ><b>email:</b> {{ctrl.persona.email}}<br/>
+    <pre><b>bio:</b>{{ctrl.persona.bio}}</pre></div>
   </div>
 </div>
