@@ -26,22 +26,7 @@
 
 
     function linkFunction($scope, $elm, $attr, ctrl) {
-
-      $elm[0].onmousedown = function(evt) {
-        $scope.longPress = true;
-        setTimeout(function() {
-          if ($scope.longPress) {
-            $scope.$apply(
-            ctrl.onHold());
-            $scope.longPress = false;
-          }
-
-        }, 600);
-      }
-      $elm[0].onmouseup = function(evt) {
-        $scope.longPress = false;
-      };
-    }
+}
   }
 
   Controller.$inject = [];
