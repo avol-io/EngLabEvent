@@ -193,10 +193,6 @@
         }, 10);
       }
 
-      if(!$localStorage.amministratori){
-        //email degli amministratori di sistema
-        $localStorage.amministratori = ['dario.fabbri@eng.it', 'alessandro.avolio@eng.it'];
-      }
     }
     init();
 

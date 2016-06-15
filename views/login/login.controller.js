@@ -24,13 +24,15 @@ Questo controller si occuperà di gestire tutta la logica di login di un utente
 				nome:null,
 				cognome:null,
 				email:null,
-				password:null
-
+				password:null,
+				ruolo:'user'
 		};
 		ctrl.utenti = $localStorage.utenti;
 
-
-
+		/*
+		simulazione amministratori
+		 */
+		var adminListTemp=['alessandro.avolio@eng.it','dario.fabbri@eng.it'];
 
 
 		/*
@@ -53,7 +55,15 @@ Questo controller si occuperà di gestire tutta la logica di login di un utente
 				}
 			});
 
+
+			//se l'utente è loggato
 			if(	$localStorage.utenteLoggato){
+				//verifico se è un amministratore
+				adminListTemp.forEach(function(admin){
+					if(admin===ctrl.utente.email){
+						$localStorage.utenteLoggato.ruolo='admin';
+					}
+				});
 				$state.go('home');
 			}else{
 				alert("Credenziali non valide");

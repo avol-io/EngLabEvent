@@ -2,50 +2,26 @@
 <div class="registrazioneNuovoUtente">
 	<b>Utenti Registrati : {{ctrl.utenti.length}}</b>
 	<h1>Registrazione Nuovo Utente</h1>
-	<form novalidate name="creaUtenteForm">
+	<form novalidate name="registrazioneNuovoUtenteForm">
 		<fieldset class="informazioniUtente">
 			<legend>Informazioni Utenti</legend>
 			<label>Nome:
-				<input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome" placeholder="Nome"></input>
+				<input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome" placeholder="Nome"/>
 			</label>
 			<label>Cognome:
-				<input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome" placeholder="Cognome"></input>
+				<input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome" placeholder="Cognome"/>
 			</label>
 			<label>Email:
-				<input type="text" ng-model="ctrl.utente.email" required="true" name="Email" placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/"></input>
+				<input type="text" ng-model="ctrl.utente.email" required="true" name="Email" placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/"/>
 			</label>
 			<label>Password:
-				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password" ></input>
-			</label>
-			<label>Esterno:
-				<input type="checkbox" ng-model="ctrl.utente.esterno" name="Esterno" value="true"></input>
+				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password"/>
 			</label>
 			<div class="operazioni">
-				<button class="salva" ng-click="ctrl.salva()" ng-if="creaUtenteForm.$valid"></button>
+					<button ui-sref="utentiRegistrati">Visualizza Utenti Registrati</button>
+					<button ng-click="ctrl.salva()" ng-disabled="!registrazioneNuovoUtenteForm.$valid" >Salva</button>
 			</div>
 		</fieldset>
 	</form>
 
-	<!--<fieldset class="utentiCreati" ng-if="ctrl.utenti.length > 0">
-		<table class="elencoUtenti">
-			<thead>
-				<tr>
-					<th><b>Nome</b></th>
-					<th><b>Cognome</b></th>
-					<th><b>Email</b></th>
-					<th><b>Elimina</b></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="utente in ctrl.utenti track by utente.id">
-					<td>{{utente.nome}}</td>
-					<td>{{utente.cognome}}</td>
-					<td>{{utente.email}}</td>
-					<td>
-						<button class="elimina" ng-click="ctrl.elimina(utente)"></button>
-					</td>
-			</tbody>
-		</table>
-
-	</fieldset-->
 </div>

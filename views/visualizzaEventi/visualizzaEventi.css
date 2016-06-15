@@ -3,52 +3,63 @@ body.visualizzazioneEventi.rendimiBello {
   background-position-y: -30px;
   background-size: 550px;
 }
-
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .elencoEventi button {
   width: 30px;
   height: 30px;
+  border: 0px;
   cursor: pointer;
-	border:0px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .elimina {
   background: transparent url("../../img/elimina.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .modifica {
   background: transparent url("../../img/edit.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .utentiPrenotati {
   background: transparent url("../../img/utenti.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .add {
   background: transparent url("../../img/add.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .aggiungi {
   background: transparent url("../../img/aggiungi.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .ok {
   background: transparent url("../../img/conferma.png") no-repeat;
-  background-size: 30px 30px;
+  background-size: contain;
   width: 30px;
   height: 30px;
   cursor: pointer;
-	border:0px;
+  border: 0px;
 }
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .visualizza {
   background: transparent url("../../img/dettaglio.png") no-repeat;
-  background-size: 30px 30px;
-	border:0px;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  border: 0px;
 }
-
 .rendimiBello .contenutoPrincipale .visualizzazioneEventi .elencoEventi .title {
   font-style: normal;
   font-weight: bold;
