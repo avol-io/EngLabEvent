@@ -13,7 +13,7 @@
       scope: {
         persona: '=',
         modalita: '@', //'normale','icona','espansa'
-        onSelezionato: '&'
+        onSelezionato: '='
       },
       link: linkFunction,
       controller: Controller,

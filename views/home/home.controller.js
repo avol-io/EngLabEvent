@@ -9,6 +9,12 @@
 
     /* @ngInject */
     function homeController() {
-    
+      var ctrl=this;
+
+      ctrl.onPersonaSelezionata=onPersonaSelezionata;
+
+      function onPersonaSelezionata(persona){
+        alert('Ciaoooo '+persona.nome+'!');
+      }
     }
 })();
