@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<div class="lista-persone">
+
+
+  <fieldset class="nonSelezioanti">
+    <legend>Tutti</legend>
+    <persona ng-repeat="persona in ctrl.nonselezionati" persona="persona" modalita="normale"  on-selezionato="ctrl.onSelezionato"></persona>
+  </fieldset>
+  <fieldset class="selezionati">
+    <legend>Selezionati</legend>
+    <persona ng-repeat="persona in ctrl.selezionati" persona="persona" modalita="normale" on-selezionato="ctrl.onDeselezionato"></persona>
+    <br/>
+    <button ng-click="ctrl.onAzioneMassiva()" ng-if="ctrl.selezionati.length>0">Azione!</button>
+  </fieldset>
+</div>

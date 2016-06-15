@@ -31,7 +31,8 @@
         $scope.longPress = true;
         setTimeout(function() {
           if ($scope.longPress) {
-            ctrl.onHold();
+            $scope.$apply(
+            ctrl.onHold());
             $scope.longPress = false;
           }
 

@@ -1,0 +1,10 @@
+.rendimibello .lista-persone{
+display: flex;
+flex-direction: row;
+border:1px solid #efefef;
+}
+
+.rendimibello .lista-persone > div{
+  overflow-y: scroll;
+  height: 300px;
+}
