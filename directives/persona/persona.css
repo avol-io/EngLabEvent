@@ -1,0 +1,40 @@
+.persona {
+  border: #efefef 1px solid;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1rem;
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  background: white;
+}
+.avatar {
+  margin-right: 1em;
+}
+.avatar img {
+  width: 50px;
+  /* height: 50px;*/
+}
+.persona:hover {
+  border: #efefef 1px solid;
+  border-radius: 5px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4)
+}
+
+/**
+ * GESTIONI STATI
+ */
+
+.persona.normale .dettaglio-espanso {
+  display: none;
+}
+.persona.icona{width: 60px;
+    justify-content: center;
+    align-items: center;
+}
+.persona.icona .avatar{
+  margin: 0px;
+}
+.persona.icona .dettaglio {
+  display: none;
+}

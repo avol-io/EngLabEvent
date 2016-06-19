@@ -29,11 +29,13 @@ Per ogni utente si vuole salvare:
       nome: null,
       cognome: null,
       email: null,
-      password: null
+      password: null,
+      emoticon:null,
+      bio:null
 
     };
     ctrl.utenti = $localStorage.utenti;
-
+    ctrl.emoticons=['/img/emo/0.png','/img/emo/1.png','/img/emo/2.png'];
 
 
     /*
@@ -46,7 +48,8 @@ Per ogni utente si vuole salvare:
 		 */
     ctrl.salva = salva;
     ctrl.pulisci = pulisci;
-  ctrl.visualizzaUtenti = false;
+    ctrl.visualizzaUtenti = false;
+    ctrl.cambiaEmoticon=cambiaEmoticon;
 
     function salva() {
       for (var i = 0; i < ctrl.utenti.length; i++) {
@@ -71,7 +74,9 @@ Per ogni utente si vuole salvare:
       $scope.registrazioneNuovoUtenteForm.$setValidity();
     }
 
-
+    function cambiaEmoticon(nome){
+      ctrl.utente.emoticon=nome;
+    }
 
 
     function init() {

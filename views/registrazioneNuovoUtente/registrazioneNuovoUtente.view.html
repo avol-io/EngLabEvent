@@ -6,20 +6,27 @@
 		<fieldset class="informazioniUtente">
 			<legend>Informazioni Utenti</legend>
 			<label>Nome:
-				<input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome" placeholder="Nome"/>
+				<input type="text" ng-model="ctrl.utente.nome" required="true" name="Nome" placeholder="Nome" />
 			</label>
 			<label>Cognome:
-				<input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome" placeholder="Cognome"/>
+				<input type="text" ng-model="ctrl.utente.cognome" required="true" name="Cognome" placeholder="Cognome" />
 			</label>
 			<label>Email:
-				<input type="text" ng-model="ctrl.utente.email" required="true" name="Email" placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/"/>
+				<input type="text" ng-model="ctrl.utente.email" required="true" name="Email" placeholder="E-Mail utente nome.cognome@eng.it" ng-pattern="/^([_a-z0-9]+(\.[_a-z0-9]+)*)(@eng.it)$/" />
 			</label>
 			<label>Password:
-				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password"/>
+				<input type="password" ng-model="ctrl.utente.password" required="true" name="Password" />
+			</label>
+			<label>Bio:
+				<textarea ng-model="ctrl.utente.bio" required="true" name="bio" placeholder="Insescici una tua biografia"></textarea>
+			</label>
+			<label>Scegli emoticons:
+				<span class="emoticon" ng-repeat="emo in ctrl.emoticons" ng-class="{'selezionato':ctrl.utente.emoticon===emo}">
+			<img   ng-click="ctrl.cambiaEmoticon(emo)" ng-src="{{emo}}"/></span>
 			</label>
 			<div class="operazioni">
-					<button ui-sref="utentiRegistrati">Visualizza Utenti Registrati</button>
-					<button ng-click="ctrl.salva()" ng-disabled="!registrazioneNuovoUtenteForm.$valid" >Salva</button>
+				<button ui-sref="utentiRegistrati">Visualizza Utenti Registrati</button>
+				<button ng-click="ctrl.salva()" ng-disabled="!registrazioneNuovoUtenteForm.$valid">Salva</button>
 			</div>
 		</fieldset>
 	</form>
