@@ -2,6 +2,10 @@
 <div class="visualizzazioneEventi" >
 	<h1>Visualizzazione Evento</h1>
 
+
+
+
+
 	<fieldset class="informazioniGenerali">
 		<legend>Informazioni Principali Evento</legend>
 		<table class="elencoEventi acard">
@@ -32,24 +36,22 @@
 		<legend>
 			<b>Lista Partecipanti</b>
 		</legend>
-		<input ng-model="queryPartecipanti" type="text"
-        placeholder="Filter by" autofocus>
 		<table class="elencoEventi">
 			<thead>
 				<tr>
 					<th>Nome</th>
 					<th>Cognome</th>
 					<th>Email</th>
-					<th ng-if="ctrl.utenteLoggato.tipologia===1">Elimina</th>
+					<th>Operazioni</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="utente in ctrl.evento.utenti | orderBy: utente.id | filter: queryPartecipanti">
+				<tr ng-repeat="utente in ctrl.evento.utenti track by utente.id">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
 					<td>{{utente.email}}</td>
-					<td ng-if="ctrl.utenteLoggato.tipologia===1">
-						<button class="elimina" ng-click="ctrl.eliminaPartecipante(utente)"></button>
+					<td >
+						<button class="elimina"  ng-if="ctrl.possoCancellarmi(utente)" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +61,10 @@
 
 	</fieldset>
 	<div class="operazioni">
-		<button ng-click="ctrl.eliminaEvento()">Elimina Evento</button>
+		<button ng-if="ctrl.possoModificare()" ng-click="ctrl.eliminaEvento()">Elimina Evento</button>
 
 	</div>
+
+	<lista-persone persone="ctrl.evento.utenti" azione="ctrl.eliminaPartecipante"></lista-persone>
+
 </div>

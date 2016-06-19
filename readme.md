@@ -20,6 +20,15 @@ Vi ricordo che avete 2weekend dopo ogni lab per poter effettuare gli esercizi.
 4. Filtri di ricerca su utenti ed eventi
 5. Quello che pensate possa essere utile
 
+### Lab3: Direttive
+Vi ricordo che per facilitarmi il compito di fare il merge conviene che fate le pull appena avete fatto una modifica e non alla fine di tutti gli esercizi. Vi consiglio inoltre di restare sincronizzati con le modifiche che man mano vengono aggiunte per evitare che le vostre modifiche vadino troppo in contrasto con le funzioni già implementate nel frattempo dagli altri e che quindi sia costretto a scartarle apriori. 
+
+1. Realizzare una direttiva (nome: 'lista-eventi') che rappresenti una lista di eventi generica.  (la useremo sia per visualizzare gli eventi disponibili all'interno della pagina eventi sia, ad esempio, gli eventi a cui l'utente sarà registrato quando faremo una pagina con questa funzione)
+`<lista-eventi eventi="..."></lista-eventi>`
+
+2. Realizzare una direttiva (nome: 'only-admin') che visualizza l'elemento su cui viene applicata solo se l'utente loggato è un amministratore. (date una sbirciata a come funzione ng-if per fare una cosa simile) `<div only-admin>sono admin</div>` o `<qualsiasi-elemento only-admin>visualizzato solo se admin</qualsiasi-elemento>`.
+
+3. se avete altre idee o dubbi scrivetemi.
 
 ##Tools
 Vi consiglio di usare Atom come editor con i seguenti plugins:
