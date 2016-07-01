@@ -84,7 +84,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
           alert('Sei già iscritto a questo evento!');
           return;
         }
-      };
+      }
 
       ctrl.evento.utenti.push(ctrl.utenteLoggato);
     }

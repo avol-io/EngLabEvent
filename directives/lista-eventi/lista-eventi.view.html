@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<div class="visualizzazioneEventi" >
-	<h1>Visualizzazione Eventi</h1> Numero eventi: {{ctrl.eventi.length || "0"}}
 
-	<!--<fieldset class="elenco">
+<div class="lista-eventi">
+
+  <fieldset class="elenco">
 		<legend>Elenco Eventi</legend>
 		<table class="elencoEventi acard">
 			<thead>
@@ -12,7 +12,7 @@
 					<th>Luogo</th>
 					<th>Min Partecipanti</th>
 					<th>Max Partecipanti</th>
-					<th>Dettaglio</th>
+          <th>Dettaglio</th>
 					<th>Operazioni</th>
 				</tr>
 			</thead>
@@ -23,24 +23,19 @@
 					<td>{{evento.luogo}}</td>
 					<td>{{evento.vincoliPartecipanti.min || "0"}}</td>
 					<td>{{evento.vincoliPartecipanti.max || "0"}}</td>
-					<td>
-						<button class="visualizza" ng-click="ctrl.visualizzaEvento(evento)"></button>
+          <td>
+						<button class="visualizza" ng-click="$parent.ctrl.visualizzaEvento(evento)"></button>
 					</td>
 					<td>
-						<button class="aggiungi" ng-click="ctrl.iscriviti(evento)"></button>
+						<button class="aggiungi" ng-click="$parent.ctrl.iscriviti(evento)"></button>
 
-						<button class="modifica" ng-if="ctrl.possoModificare(evento)" ng-click="ctrl.modificaEvento(evento)"></button>
+						<button class="modifica" ng-click="$parent.ctrl.modificaEvento(evento)" only-admin></button>
 
-						<button only-admin class="elimina" ng-if="ctrl.possoModificare(evento)" ng-click="ctrl.eliminaEvento(evento)"></button>
+						<button class="elimina" ng-click="$parent.ctrl.eliminaEvento(evento)" only-admin></button>
 
 					</td>
-
 				</tr>
 			</tbody>
 		</table>
-	</fieldset>-->
-
-	<lista-eventi eventi="ctrl.eventi"></lista-eventi>
-
-
+	</fieldset>
 </div>
