@@ -52,7 +52,7 @@ VISUALIZZA EVENTO
     }
 
     function eliminaEvento() {
-      $localStorage.eventi.splice(  $localStorage.eventi.splice.indexOf(ctrl.evento), 1);
+      $localStorage.eventi.splice(  $localStorage.eventi.indexOf(ctrl.evento), 1);
       $state.go('visualizzaEventi');
     }
 
@@ -90,7 +90,7 @@ VISUALIZZA EVENTO
           alert('Sei già iscritto a questo evento!');
           return;
         }
-      };
+      }
 
       ctrl.evento.utenti.push(ctrl.utenteLoggato);
     }

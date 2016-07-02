@@ -1,0 +1,10 @@
+.rendimibello .lista-eventi{
+display: flex;
+flex-direction: row;
+border:1px solid #efefef;
+}
+
+.rendimibello .lista-eventi > div{
+  overflow-y: scroll;
+  height: 300px;
+}
