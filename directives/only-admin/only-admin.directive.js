@@ -18,14 +18,10 @@
       setTimeout(function() {
         var admin = ctrl.utenteLoggato.ruolo==='admin';
         $scope.$apply($elm);
-        if(admin){
-          $elm.css('visibility', 'visible');
-          $elm.css('display', '');
-          //return 'visible';
-        } else {
-          $elm.css('visibility', 'hidden');
-          $elm.css('display', 'none');
-          //return 'hidden';
+        if(!admin){
+          $elm.remove();
+          // $elm.css('visibility', 'hidden');
+          // $elm.css('display', 'none');
         }
       }, 100);
     }
