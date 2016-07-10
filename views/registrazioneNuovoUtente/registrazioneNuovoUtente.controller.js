@@ -4,7 +4,7 @@ Questo controller si occuperà di gestire tutta la logica di registrazione di un
 Per ogni utente si vuole salvare:
 - nome (text)
 - cognome (text)
-- email aziendale (email)
+- uid aziendale (uid)
 - se è esterno oppure no (bool)
 
  */
@@ -17,10 +17,10 @@ Per ogni utente si vuole salvare:
     .module('engLabEvents')
     .controller('registrazioneNuovoUtente', registrazioneNuovoUtente);
 
-  registrazioneNuovoUtente.$inject = ['$localStorage','$scope'];
+  registrazioneNuovoUtente.$inject = ['$localStorage', '$scope', 'utentiFacade'];
 
   /* @ngInject */
-  function registrazioneNuovoUtente($localStorage,$scope) {
+  function registrazioneNuovoUtente($localStorage, $scope, utentiFacade) {
     var ctrl = this;
     /*
     	ATTRIBUTI
@@ -28,14 +28,14 @@ Per ogni utente si vuole salvare:
     ctrl.utente = {
       nome: null,
       cognome: null,
-      email: null,
+      uid: null,
       password: null,
-      emoticon:null,
-      bio:null
+      emoticon: null,
+      bio: null
 
     };
     ctrl.utenti = $localStorage.utenti;
-    ctrl.emoticons=['/img/emo/0.png','/img/emo/1.png','/img/emo/2.png'];
+    ctrl.emoticons = ['/img/emo/0.png', '/img/emo/1.png', '/img/emo/2.png'];
 
 
     /*
@@ -49,23 +49,25 @@ Per ogni utente si vuole salvare:
     ctrl.salva = salva;
     ctrl.pulisci = pulisci;
     ctrl.visualizzaUtenti = false;
-    ctrl.cambiaEmoticon=cambiaEmoticon;
+    ctrl.cambiaEmoticon = cambiaEmoticon;
 
     function salva() {
-      for (var i = 0; i < ctrl.utenti.length; i++) {
-        if (ctrl.utente.email === ctrl.utenti[i].email) {
-          alert('Già presente un utente con la stessa mail. Contattare gli amministratori.');
-          return;
-        }
+
+      function salvato(utente) {
+        console.log(utente);
+        alert('Utente registrato correttamente');
+        pulisci();
       }
 
-      ctrl.utente.id = Math.ceil(Math.random() * 100);
-      ctrl.utente.dataIscrizione = new Date();
+      function errore(errore) {
+        console.error(errore);
+        alert('Errore durante il salvataggio');
+
+      }
+
+      utentiFacade.saveUtente(ctrl.utente).then(salvato, errore);
 
 
-      ctrl.utenti.push(ctrl.utente);
-      alert('Utente registrato correttamente');
-      pulisci();
     }
 
     function pulisci() {
@@ -74,8 +76,8 @@ Per ogni utente si vuole salvare:
       $scope.registrazioneNuovoUtenteForm.$setValidity();
     }
 
-    function cambiaEmoticon(nome){
-      ctrl.utente.emoticon=nome;
+    function cambiaEmoticon(nome) {
+      ctrl.utente.emoticon = nome;
     }
 
 

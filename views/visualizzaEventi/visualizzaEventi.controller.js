@@ -80,7 +80,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
       }
 
       for (var i = 0; i < ctrl.evento.utenti.length; i++) {
-        if (ctrl.utenteLoggato.email === ctrl.evento.utenti[i].email) {
+        if (ctrl.utenteLoggato.uid === ctrl.evento.utenti[i].uid) {
           alert('Sei già iscritto a questo evento!');
           return;
         }
@@ -95,7 +95,7 @@ Questo controller si occuperà di gestire tutta la logica di visualizzazione del
     }
 
 		function possoModificare(evento){
-			return evento.autore.email===$localStorage.utenteLoggato.email||$localStorage.utenteLoggato.ruolo==='admin';
+			return evento.autore.uid===$localStorage.utenteLoggato.uid||$localStorage.utenteLoggato.ruolo==='admin';
 		}
 
 

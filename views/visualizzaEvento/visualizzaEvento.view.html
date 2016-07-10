@@ -41,7 +41,7 @@
 				<tr>
 					<th>Nome</th>
 					<th>Cognome</th>
-					<th>Email</th>
+					<th>uid</th>
 					<th>Operazioni</th>
 				</tr>
 			</thead>
@@ -49,7 +49,7 @@
 				<tr ng-repeat="utente in ctrl.evento.utenti track by utente.id">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
-					<td>{{utente.email}}</td>
+					<td>{{utente.uid}}</td>
 					<td >
 						<button class="elimina"  ng-if="ctrl.possoCancellarmi(utente)" ng-click="ctrl.eliminaPartecipante(utente)"></button>
 					</td>

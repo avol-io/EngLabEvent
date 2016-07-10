@@ -19,7 +19,7 @@
 				<tr ng-repeat="utente in ctrl.utenti | orderBy: utente.id | filter: query">
 					<td>{{utente.nome}}</td>
 					<td>{{utente.cognome}}</td>
-					<td>{{utente.email}}</td>
+					<td>{{utente.uid}}</td>
 					<td>{{utente.esterno===true?'si':'no'}}</td>
 					<td>{{utente.dataIscrizione | date: 'dd/MM/yyyy HH:mm'}}</td>
 					<td>

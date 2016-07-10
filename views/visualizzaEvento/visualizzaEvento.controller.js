@@ -67,12 +67,12 @@ VISUALIZZA EVENTO
 
     function possoCancellarmi(utente){
       var evento=ctrl.evento;
-      return utente.email===$localStorage.utenteLoggato.email||evento.autore.email===$localStorage.utenteLoggato.email||$localStorage.utenteLoggato.ruolo==='admin';
+      return utente.uid===$localStorage.utenteLoggato.uid||evento.autore.uid===$localStorage.utenteLoggato.uid||$localStorage.utenteLoggato.ruolo==='admin';
     }
 
     function possoModificare(){
       var evento=ctrl.evento;
-      return evento.autore.email===$localStorage.utenteLoggato.email||$localStorage.utenteLoggato.ruolo==='admin';
+      return evento.autore.uid===$localStorage.utenteLoggato.uid||$localStorage.utenteLoggato.ruolo==='admin';
     }
 
 
@@ -86,7 +86,7 @@ VISUALIZZA EVENTO
       }
 
       for (var i = 0; i < ctrl.evento.utenti.length; i++) {
-        if (ctrl.utenteLoggato.email === ctrl.evento.utenti[i].email) {
+        if (ctrl.utenteLoggato.uid === ctrl.evento.utenti[i].uid) {
           alert('Sei già iscritto a questo evento!');
           return;
         }

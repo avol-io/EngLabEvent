@@ -145,7 +145,7 @@ Il modello che rappresenta un'evento ha questo struttura
      * @return void
      */
     function modifica() {
-      if (!(ctrl.evento.autore.email === $localStorage.utenteLoggato.email || $localStorage.utenteLoggato.ruolo === 'admin')) {
+      if (!(ctrl.evento.autore.uid === $localStorage.utenteLoggato.uid || $localStorage.utenteLoggato.ruolo === 'admin')) {
         alert('non sei autorizzato a modificare questo evento');
       }
 

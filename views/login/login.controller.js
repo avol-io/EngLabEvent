@@ -50,7 +50,7 @@ Questo controller si occuperà di gestire tutta la logica di login di un utente
         alert('Credenziali non valide');
       }
 
-      var promise = loginService.login(ctrl.utente.email, ctrl.utente.password);
+      var promise = loginService.login(ctrl.utente.uid, ctrl.utente.password);
       promise.then(loginOK, loginErr);
 
     }
