@@ -9,14 +9,18 @@
   <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
   <meta http-equiv="pragma" content="no-cache" />
   <title>Eng Lab Events</title>
+
+  <!-- lib esterne -->
   <script src="extra/angular.min.js" charset="utf-8"></script>
+  <script src="extra/angular-ui-router.js" charset="utf-8"></script>
+  <script src="extra/ngStorage.js" charset="utf-8"></script>
+  <script src="extra/angular-resource.js" charset="utf-8"></script>
+  <script src="extra/angular-jwt.js" charset="utf-8"></script>
+
   <!-- base -->
   <script src="engLabEvents.app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
 
-  <!-- lib esterne -->
-  <script src="extra/angular-ui-router.js" charset="utf-8"></script>
-  <script src="extra/ngStorage.js" charset="utf-8"></script>
   <!-- home-->
   <script src="views/home/home.controller.js" charset="utf-8"></script>
   <link rel="stylesheet" href="views/home/home.css" media="screen" title="no title" charset="utf-8">
@@ -63,6 +67,12 @@
 
   <!-- only-admin -->
   <script src="directives/only-admin/only-admin.directive.js" charset="utf-8"></script>
+
+  <!-- loginService -->
+  <script src="services/loginService.service.js" charset="utf-8"></script>
+
+  <!-- Configuration -->
+  <script src="services/Configuration.constant.js" charset="utf-8"></script>
 </head>
 
 <body class="rendimiBello" ng-controller="controllerApp as ctrlApp" >

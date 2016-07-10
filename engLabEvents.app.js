@@ -4,7 +4,7 @@
   DEFINIZIONE DELL'APP
   **************************************/
   //creo il modulo principale/app
-  var engLabEvents = angular.module('engLabEvents', ['ngStorage', 'ui.router']);
+  var engLabEvents = angular.module('engLabEvents', ['ngStorage', 'ui.router','ngResource','angular-jwt']);
 
   /**************************************
   ROUTING
@@ -115,9 +115,9 @@
   //definisco il controller che associo a tutta l'app e che governerà gli aspetti generali.
   engLabEvents.controller('controllerApp', controllerApp);
 
-  controllerApp.$inject = ['$state', '$timeout', '$rootScope','$localStorage'];
+  controllerApp.$inject = ['$state', '$timeout', '$rootScope','$localStorage','loginService'];
 
-  function controllerApp($state, $timeout, $rootScope,$localStorage) {
+  function controllerApp($state, $timeout, $rootScope,$localStorage,loginService) {
     var ctrlApp = this;
 
     /*
@@ -148,7 +148,7 @@
     //Intercetto il cambio di location e verifico se l'utente è loggato e in futuro se potrà accedere a quel percorso
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
 
-      var profile = $localStorage.utenteLoggato;
+      var profile = loginService.getProfile();
 
       if (!profile) {
         if(next.indexOf('registrati')<=0){ //prossimamente gestiremo i percorsi validi da loggati e non
@@ -180,14 +180,13 @@
 
 
     function logout() {
-      $localStorage.utenteLoggato = null;
+      loginService.logout();
       $state.go('login');
     }
 
     function init() {
-      if ($localStorage.utenteLoggato) {
-        ctrlApp.utente = $localStorage.utenteLoggato;
-      } else {
+      ctrlApp.utente = loginService.getProfile();
+      if(!ctrlApp.utente) {
         $timeout(function() {
           $state.go('login');
         }, 10);
