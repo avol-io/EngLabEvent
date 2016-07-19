@@ -84,7 +84,7 @@
        }
 
        for (var i = 0; i < ctrl.evento.utenti.length; i++) {
-         if (ctrl.utenteLoggato.email === ctrl.evento.utenti[i].email) {
+         if (ctrl.utenteLoggato.uid === ctrl.evento.utenti[i].uid) {
            alert('Sei già iscritto a questo evento!');
            return;
          }
