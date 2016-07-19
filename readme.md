@@ -30,6 +30,16 @@ Vi ricordo che per facilitarmi il compito di fare il merge conviene che fate le 
 
 3. se avete altre idee o dubbi scrivetemi.
 
+
+### Lab4: Service
+
+Creare un servizio di facade verso eventi.
+Qui potete scaricare il back-end di supporto https://github.com/avol-io/engineering-learning-lab/tree/master/corso-angular/express-test
+
+Per farlo funzionare dovete installare mongodb (https://docs.mongodb.com/manual/installation/) 
+e poi potete avviare l'app con:
+`node app.js`
+
 ##Tools
 Vi consiglio di usare Atom come editor con i seguenti plugins:
 
